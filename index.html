@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Audiso XR</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="logo"><img src="images/audiso.svg" alt="Audiso 오디에스오" /></a>
+      <ul class="nav-links">
+        <li><a href="#product">제품</a></li>
+        <li><a href="#services">기술개발</a></li>
+        <li><a href="#demo">기술데모</a></li>
+        <li><a href="#contact" class="nav-cta">EN / 한국어</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero-wrap">
+    <video class="hero-video" src="video/hero_short.mp4" autoplay loop muted playsinline></video>
+    <div class="hero-vignette"></div>
+    <div class="hero-scanlines"></div>
+    <section class="hero">
+      <div class="hero-content">
+        <span class="hero-tag">AI · XR · 디지털트윈</span>
+        <h1>의료 분야 미래,<br /><em>디지털 헬스케어</em>로<br />이끌어갑니다.</h1>
+        <p>오디에스오는 인공지능과 XR 디지털트윈 기술로<br />이비인후과·청각 분야 진단·치료·교육을 혁신합니다.</p>
+        <div class="hero-actions">
+          <a href="#services" class="btn-primary">기술 살펴보기</a>
+          <a href="#product" class="btn-ghost">WithHear™ 알아보기 →</a>
+        </div>
+      </div>
+    </section>
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stats-inner">
+        <div class="stat">
+          <div class="stat-number">80</div>
+          <div class="stat-label">특허</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">118</div>
+          <div class="stat-label">Publication</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">72</div>
+          <div class="stat-label">Reports</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED PRODUCT -->
+  <section class="product-section" id="product">
+    <canvas id="product-canvas"></canvas>
+    <div class="product-inner">
+      <div>
+        <span class="product-badge">AI 의료기기</span>
+        <img src="images/withhear.svg" alt="WithHear™" class="product-title-img" />
+        <p>인공지능 기반 청력 선별진단 의료기기로 <br />별도의 검사실 없이도 빠르고 정확하게 난청을 진단합니다.</p>
+        <ul class="product-features">
+          <li>간편설문검사 · AI 순음청력검사를 통한 자동화 분석</li>
+          <li>모바일 · 키오스크 · 방음부스 등 유연한 플랫폼 대응</li>
+          <li>KOLAS 인증 교정 장비로 표준화 검사 보장</li>
+          <li>빠른 고막 촬영과 AI 결과분석</li>
+          <li>실시간 결과 리포트 생성</li>
+        </ul>
+        <a href="products/product_01.html" class="btn-accent" style="margin-top:36px; display:inline-block;">자세히 보기</a>
+      </div>
+      <div class="product-visual">
+        <img src="images/img_withhear_01.png" alt="WithHear 제품 이미지 1" class="float-img float-img-1" />
+        <img src="images/img_withhear_02.png" alt="WithHear 제품 이미지 2" class="float-img float-img-2" />
+        <img src="images/img_withhear_03.png" alt="WithHear 제품 이미지 3" class="float-img float-img-3" />
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products">
+    <div class="section-inner">
+      <h2 class="section-title">제품 라인업</h2>
+      <div class="products-grid">
+
+        <div class="product-card">
+          <div class="product-card-icon">📱</div>
+          <div class="product-card-badge">모바일</div>
+          <h3>모두의 보청기</h3>
+          <p>스마트폰과 이어폰만으로 언제 어디서나 AI 청력 자가검사를 수행하고 결과를 즉시 확인하는 모바일 앱.</p>
+          <a href="products/product_02.html" class="btn-card-detail">자세히</a>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-icon">🥽</div>
+          <div class="product-card-badge">헬스케어</div>
+          <h3>마인드톤</h3>
+          <p>이명 및 불면증 환자를 위한 디지털 헬스케어앱. 소리, 호흡, 마음 케어 및 커뮤니티 기능 제공.</p>
+          <a href="products/product_03.html" class="btn-card-detail">자세히</a>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-icon">🏥</div>
+          <div class="product-card-badge">VR 교육</div>
+          <h3>청력검사VR</h3>
+          <p>이비인후과 전공의 및 의대생을 위한 이석증 진단·이석치환술·측두골 수술 훈련 통합 VR 시뮬레이터.</p>
+          <a href="products/product_04.html" class="btn-card-detail">자세히</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-inner">
+      <div class="section-label">기술개발</div>
+      <h2 class="section-title">핵심 기술 역량</h2>
+      <div class="services-grid">
+        <div class="service-card" style="background-image: url('images/img_services_01.jpg')">
+          <h3>디지털 트윈</h3>
+          <p>인체 구조와 의료 환경을 디지털로 복제하여 정밀한 시뮬레이션과 교육이 가능한 가상 환경을 구현합니다.</p>
+        </div>
+        <div class="service-card" style="background-image: url('images/img_services_02.jpg')">
+          <h3>AI 디지털 진단</h3>
+          <p>딥러닝 기반 이미지 분석으로 청각·이비인후과 질환을 조기 탐지하고 정확도 높은 진단 보조를 제공합니다.</p>
+        </div>
+        <div class="service-card" style="background-image: url('images/img_services_03.jpg')">
+          <h3>XR 의료 시뮬레이터</h3>
+          <p>VR·AR 기술로 외과 수술 훈련 및 임상 시뮬레이션 환경을 제공하여 의료 교육의 효과를 극대화합니다.</p>
+        </div>
+        <div class="service-card" style="background-image: url('images/img_services_04.jpg')">
+          <h3>모바일 헬스케어</h3>
+          <p>스마트폰 기반 청력 자가 검진과 원격 모니터링으로 언제 어디서나 건강 관리를 지원합니다.</p>
+        </div>
+        <div class="service-card" style="background-image: url('images/img_services_05.jpg')">
+          <h3>임상 데이터 분석</h3>
+          <p>실제 임상 데이터를 기반으로 AI 모델을 학습시켜 근거 중심의 디지털 치료제를 개발합니다.</p>
+        </div>
+        <div class="service-card" style="background-image: url('images/img_services_06.jpg')">
+          <h3>원격 재활 솔루션</h3>
+          <p>VR 기반 전정기능 재활 및 청각 훈련 프로그램을 원격으로 제공하여 접근성을 높입니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH DEMO -->
+  <section id="demo">
+    <div class="section-inner">
+      <div class="section-label">기술 데모</div>
+      <h2 class="section-title">직접 체험해보세요</h2>
+      <div class="demo-grid">
+
+        <div class="product-card">
+          <div class="product-card-icon">📊</div>
+          <div class="product-card-badge">AI · 예측 모델</div>
+          <h3>돌발성난청 호전 예측 시뮬레이터</h3>
+          <p>청력 검사 데이터와 임상 변수를 입력하면 AI가 치료 후 호전 가능성을 예측합니다.</p>
+          <a href="#" class="btn-card-detail">자세히</a>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-icon">👂</div>
+          <div class="product-card-badge">AI · 이미지 분석</div>
+          <h3>AI 귀 건강 분석</h3>
+          <p>이경 내시경 이미지를 AI가 분석하여 고막 상태·중이염·이도 이상을 자동 탐지합니다.</p>
+          <a href="#" class="btn-card-detail">자세히</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section class="partners-section" id="partners">
+    <div class="section-inner">
+      <h2 class="section-title">협력 기관</h2>
+      <div class="partners-grid">
+        <a class="partner-item" href="https://www.hallym.ac.kr" target="_blank" rel="noopener noreferrer">한림대학교</a>
+        <a class="partner-item" href="https://www.cmcseoul.or.kr" target="_blank" rel="noopener noreferrer">가톨릭대학교<br/>서울성모병원</a>
+        <a class="partner-item" href="https://www.knab.go.kr" target="_blank" rel="noopener noreferrer">KOLAS</a>
+        <a class="partner-item" href="https://www.kriss.re.kr" target="_blank" rel="noopener noreferrer">한국표준과학<br/>연구원</a>
+        <a class="partner-item" href="https://www.audiologykorea.or.kr" target="_blank" rel="noopener noreferrer">대한청각학회</a>
+        <a class="partner-item" href="https://hospital.kangwon.ac.kr" target="_blank" rel="noopener noreferrer">강원대학교<br/>병원</a>
+        <a class="partner-item" href="https://www.ywmc.or.kr" target="_blank" rel="noopener noreferrer">원주세브란스<br/>기독병원</a>
+        <a class="partner-item" href="https://www.snubh.org" target="_blank" rel="noopener noreferrer">분당서울대<br/>병원</a>
+        <a class="partner-item" href="https://hosp.ajoumc.or.kr" target="_blank" rel="noopener noreferrer">아주대학교<br/>병원</a>
+        <a class="partner-item" href="#" target="_blank" rel="noopener noreferrer">의료기기<br/>종합지원센터</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="contact">
+    <canvas id="cta-canvas"></canvas>
+    <div class="cta-inner">
+      <h2>미래 의료 비전을<br />나누고 싶어요.</h2>
+      <p>의료 및 연구기관, 기업 모두 환영합니다.<br />오디에스오의 기술과 비전을 공유합니다.</p>
+      <a href="mailto:contact@audiso.co.kr" class="btn-accent">문의 보내기</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="logo"><img src="images/audiso.svg" alt="Audiso 오디에스오" /></a>
+        <p>(주)오디에스오<br />강원특별자치도 원주시 지정면 기업도시로 200, <br />의료기기종합지원센터 603호</p>
+        <p>contact@audiso.co.kr</p>
+      </div>
+      <div class="footer-col">
+        <h4>기술개발</h4>
+        <ul>
+          <li><a href="#">디지털 트윈</a></li>
+          <li><a href="#">AI 디지털 진단</a></li>
+          <li><a href="#">XR 의료 시뮬레이터</a></li>
+          <li><a href="#">모바일 헬스케어</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>프로젝트</h4>
+        <ul>
+          <li><a href="#">VR 전정기능 재활</a></li>
+          <li><a href="#">순음청력검사 VR</a></li>
+          <li><a href="#">이석증 치료 VR</a></li>
+          <li><a href="#">측두골 시뮬레이터</a></li>
+          <li><a href="#">AI 청력검사 키오스크</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>회사</h4>
+        <ul>
+          <li><a href="#">회사 소개</a></li>
+          <li><a href="#">WithHear™</a></li>
+          <li><a href="#">기술데모</a></li>
+          <li><a href="#">채용</a></li>
+          <li><a href="#">문의</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>©2026 Audiso, Inc. All rights reserved.</p>
+      <p>주식회사 오디에스오</p>
+    </div>
+  </footer>
+
+  <script src="js/partners-bg.js"></script>
+  <script src="js/product-bg.js"></script>
+</body>
+</html>
