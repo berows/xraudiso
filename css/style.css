@@ -579,7 +579,7 @@ section { padding: 100px 32px; }
 .product-card {
   background: var(--white);
   padding: 0;
-  border-radius: 0;
+  border-radius: 16px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.07);
   transition: box-shadow 0.2s, transform 0.15s;
   overflow: hidden;
