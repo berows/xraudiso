@@ -24,7 +24,7 @@
       this.y         = Math.random() * canvas.height;
       this.vx        = (Math.random() - 0.5) * SPEED;
       this.vy        = (Math.random() - 0.5) * SPEED;
-      this.r         = Math.random() * 2 + 0.8;
+      this.r         = Math.random() * 4 + 1.6;
       this.baseAlpha = Math.random() * 0.35 + 0.15;
       this.alpha     = this.baseAlpha;
       this.pulse     = Math.random() * Math.PI * 2;
