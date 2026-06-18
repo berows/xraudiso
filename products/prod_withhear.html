@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>청력검사 VR 시뮬레이터 — Audiso</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    /* ── 공통 ── */
+    .page-wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+    section { padding: 96px 0; }
+
+    /* ── 히어로 ── */
+    .hero-pd { background: var(--black); color: var(--white); padding: 100px 0 80px; }
+    .hero-pd-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .detail-back { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.45); text-decoration: none; margin-bottom: 36px; transition: color 0.2s; }
+    .detail-back:hover { color: var(--white); }
+    .hero-pd-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .hero-pd h1 { font-size: clamp(28px, 3vw, 40px); font-weight: 700; letter-spacing: -0.5px; line-height: 1.3; margin-bottom: 20px; }
+    .hero-pd-sub { font-size: 16px; color: rgba(255,255,255,0.55); line-height: 1.8; max-width: 480px; }
+    .hero-pd-img { border-radius: 16px; overflow: hidden; }
+    .hero-pd-img img { width: 100%; display: block; height: 420px; object-fit: cover; }
+
+    /* ── 핵심 메시지 ── */
+    .section-statement { background: #f8f9fb; text-align: center; }
+    .statement-label { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+    .statement-title { font-size: clamp(28px, 3.5vw, 46px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.15; max-width: 780px; margin: 0 auto 24px; }
+    .statement-desc { font-size: 17px; color: var(--gray-500); line-height: 1.8; max-width: 640px; margin: 0 auto; }
+
+    /* ── 교차 섹션 ── */
+    .split-section { border-top: 1px solid var(--gray-200); }
+    .split-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .split-inner.reverse { direction: rtl; }
+    .split-inner.reverse > * { direction: ltr; }
+    .split-text-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .split-text h2 { font-size: clamp(26px, 3vw, 38px); font-weight: 800; letter-spacing: -1px; line-height: 1.2; margin-bottom: 20px; }
+    .split-text p { font-size: 16px; color: var(--gray-500); line-height: 1.8; margin-bottom: 16px; }
+    .split-img img { width: 100%; border-radius: 16px; display: block; }
+    .split-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+    .split-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; color: var(--gray-600, #444); }
+    .split-list li::before { content: "✓"; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+
+    /* ── 훈련 모드 ── */
+    .section-modes { background: var(--black); color: var(--white); }
+    .modes-header { text-align: center; margin-bottom: 56px; }
+    .modes-header .label { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .modes-header h2 { font-size: clamp(28px, 3vw, 42px); font-weight: 800; letter-spacing: -1.5px; }
+    .modes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .mode-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 36px 32px; }
+    .mode-icon { font-size: 36px; margin-bottom: 20px; }
+    .mode-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 12px; }
+    .mode-card p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+    /* ── 가치 그리드 ── */
+    .section-values { background: #f8f9fb; }
+    .values-header { text-align: center; margin-bottom: 56px; }
+    .values-header .label { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .values-header h2 { font-size: clamp(26px, 3vw, 40px); font-weight: 800; letter-spacing: -1px; }
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .value-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 32px 28px; }
+    .value-card h4 { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
+    .value-card p { font-size: 14px; color: var(--gray-500); line-height: 1.65; }
+
+    /* ── 하드웨어 ── */
+    .section-hw { border-top: 1px solid var(--gray-200); }
+    .hw-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+    .hw-inner h2 { font-size: clamp(26px, 3vw, 40px); font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; }
+    .hw-inner p { font-size: 16px; color: var(--gray-500); line-height: 1.8; max-width: 560px; margin-bottom: 48px; }
+    .hw-inner img { width: 100%; border-radius: 16px; }
+
+    /* ── 마감 CTA ── */
+    .section-cta { background: var(--black); color: var(--white); text-align: center; padding: 120px 32px; }
+    .section-cta .label { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+    .section-cta h2 { font-size: clamp(32px, 4vw, 56px); font-weight: 800; letter-spacing: -2px; line-height: 1.1; margin-bottom: 40px; }
+
+    /* ── 반응형 ── */
+    @media (max-width: 900px) {
+      .hero-pd-inner, .split-inner { grid-template-columns: 1fr; gap: 40px; }
+      .split-inner.reverse { direction: ltr; }
+      .modes-grid { grid-template-columns: 1fr; gap: 16px; }
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+      section { padding: 72px 0; }
+    }
+    @media (max-width: 600px) {
+      .page-wrap, .split-inner, .hero-pd-inner, .hw-inner { padding: 0 20px; }
+      .values-grid { grid-template-columns: 1fr; }
+      section { padding: 56px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav></nav>
+
+  <!-- 히어로 -->
+  <div class="hero-pd">
+    <div class="hero-pd-inner">
+      <div>
+        <a href="../index.html#product" class="detail-back">← 제품으로 돌아가기</a>
+        <div class="hero-pd-eyebrow">디지털트윈 의료기기 시뮬레이터</div>
+        <h1>가상현실 기반<br />청력검사 훈련 시뮬레이터</h1>
+        <p class="hero-pd-sub">순음청력검사(PTA) 교육을 위한 VR 훈련 시스템. 실제 난청환자 디지털트윈과 다양한 임상 시나리오를 가상 환경에서 반복 경험합니다.</p>
+      </div>
+      <div class="hero-pd-img">
+        <img src="../images/ptavr_01.png" alt="청력검사 VR 시뮬레이터" />
+      </div>
+    </div>
+  </div>
+
+  <!-- 핵심 메시지 -->
+  <section class="section-statement">
+    <div class="page-wrap">
+      <div class="statement-label">연구 배경</div>
+      <h2 class="statement-title">훈련 환경의 인프라 제약을 VR로 극복합니다</h2>
+      <p class="statement-desc">표준 청력검사는 숙련된 청각사와 고가 장비가 필수입니다. 청각사 양성 과정에서 표준화된 훈련 환경에 접근하기 어려웠던 현실을 VR 기술로 해결합니다.</p>
+    </div>
+  </section>
+
+  <!-- 교차 섹션 1 -->
+  <section class="split-section">
+    <div class="split-inner">
+      <div class="split-text">
+        <div class="split-text-eyebrow">임상 환경 재현</div>
+        <h2>실제 검사실을 그대로 VR로</h2>
+        <p>물리기반 렌더링(PBR) 기술로 실제 청력검사실 환경을 충실하게 재현합니다. 시간과 장소의 제약 없이 몰입형 훈련이 가능합니다.</p>
+        <ul class="split-list">
+          <li>72fps 이상의 안정적인 동작 성능 보장</li>
+          <li>저사양 무선 독립형 HMD 기기 지원</li>
+          <li>돌발 상황 및 시간적 오차까지 실시간 재현</li>
+        </ul>
+      </div>
+      <div class="split-img">
+        <img src="../images/ptavr_02.png" alt="VR 청력검사 환경" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 교차 섹션 2 -->
+  <section class="split-section">
+    <div class="split-inner reverse">
+      <div class="split-text">
+        <div class="split-text-eyebrow">환자 디지털트윈</div>
+        <h2>실제 난청환자 데이터 기반 AI 아바타</h2>
+        <p>실제 난청환자 데이터베이스로 생성한 디지털트윈 아바타와 함께 훈련합니다. 희귀 환자 케이스 시나리오와 다양한 임상 변수를 자유롭게 설정할 수 있습니다.</p>
+        <ul class="split-list">
+          <li>실제 임상 데이터 기반 환자 아바타 생성</li>
+          <li>다양한 난청 유형 및 중증도 시나리오</li>
+          <li>네트워크 기반 환자 데이터 및 원격 검사 지원</li>
+        </ul>
+      </div>
+      <div class="split-img">
+        <img src="../images/ptavr_03.png" alt="환자 디지털트윈 아바타" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 훈련 모드 -->
+  <section class="section-modes">
+    <div class="page-wrap">
+      <div class="modes-header">
+        <div class="label">훈련 모드</div>
+        <h2>목적에 맞게 선택하는<br />3가지 훈련 방식</h2>
+      </div>
+      <div class="modes-grid">
+        <div class="mode-card">
+          <div class="mode-icon">🎯</div>
+          <h3>평가 모드</h3>
+          <p>자동 채점과 성과 데이터로 훈련생의 역량을 객관적으로 측정합니다. 교육자 없이도 표준화된 평가가 가능합니다.</p>
+        </div>
+        <div class="mode-card">
+          <div class="mode-icon">📖</div>
+          <h3>연습 모드</h3>
+          <p>단계별 가이드를 따라 절차를 반복 숙달합니다. 실수에 대한 즉각적인 피드백으로 교육자의 부담을 줄입니다.</p>
+        </div>
+        <div class="mode-card">
+          <div class="mode-icon">🤝</div>
+          <h3>다중 사용자 모드</h3>
+          <p>교육자와 훈련생이 동일한 VR 공간에서 협업합니다. 실시간 지도와 피드백으로 학습 효과를 극대화합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 가치 그리드 -->
+  <section class="section-values">
+    <div class="page-wrap">
+      <div class="values-header">
+        <div class="label">도입 가치</div>
+        <h2>청각 교육의 새로운 기준을 제시합니다</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card">
+          <h4>휴대성</h4>
+          <p>무선 독립형 HMD로 검사실 없이도 어디서든 훈련 가능합니다.</p>
+        </div>
+        <div class="value-card">
+          <h4>효율성</h4>
+          <p>반복 훈련과 즉각 피드백으로 전통적인 도제식 교육 대비 학습 속도를 높입니다.</p>
+        </div>
+        <div class="value-card">
+          <h4>접근성</h4>
+          <p>희귀 케이스와 다양한 장비 유형을 콘텐츠로 제공해 현장 경험의 편차를 해소합니다.</p>
+        </div>
+        <div class="value-card">
+          <h4>안전성</h4>
+          <p>실제 환자 없이도 고위험 상황을 안전하게 경험하고 대응 능력을 기릅니다.</p>
+        </div>
+        <div class="value-card">
+          <h4>데이터</h4>
+          <p>훈련 기록과 성과 지표를 축적해 교육 프로그램의 품질을 지속적으로 개선합니다.</p>
+        </div>
+        <div class="value-card">
+          <h4>확장성</h4>
+          <p>네트워크 기반 원격 검사 기능으로 교육 기관의 규모에 따라 유연하게 운영합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 하드웨어 -->
+  <section class="section-hw">
+    <div class="hw-inner">
+      <h2>실제 훈련 화면</h2>
+      <p>순음청력검사의 전 과정을 VR 환경에서 실감나게 체험합니다. 실제 검사기기의 조작감과 환자 반응을 충실하게 재현합니다.</p>
+      <img src="../images/ptavr_04.png" alt="청력검사 VR 훈련 화면" />
+    </div>
+  </section>
+
+  <!-- 마감 CTA -->
+  <section class="section-cta">
+    <div class="label">도입 문의</div>
+    <h2>전문 청각사 양성을<br />새로운 방식으로</h2>
+    <a href="../index.html#contact" class="btn-accent">Audiso 팀과 상담하기</a>
+  </section>
+
+  <footer></footer>
+  <script src="../js/components.js"></script>
+</body>
+</html>
