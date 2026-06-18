@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SSNHL 청력 호전 예측 시뮬레이터 · 외래 초진용 (v0.3)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme:{ extend:{ colors:{ brand:{DEFAULT:'#0ea5e9',50:'#e0f2fe',500:'#0ea5e9',600:'#0284c7'} }}}}
+  </script>
+  <!-- jsPDF for PDF export -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-YcsIPQn0i0kCE3b2cK8W2mTtYpN0c9lW5X7s3Q8Xz6B7kzZ0a2zVw9NfCSn9r6iQm9u7y2xCqJg5b5NQmQn5sw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+  
+  <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+
+  <link rel="stylesheet" href="SSNHL_predi_ver_3_0.css">
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <header class="max-w-7xl mx-auto p-4 md:p-6">
+    <div class="flex items-center justify-between gap-4">
+      <h1 class="text-xl md:text-2xl font-semibold" data-i18n="title">SSNHL 청력 호전 예측 시뮬레이터 <span class="pill">외래 초진용 · v0.3</span></h1>
+      <div class="flex items-center gap-2" id="controls">
+        <select id="lang" class="px-3 py-1.5 rounded-xl border text-sm">
+          <option value="ko">한국어</option><option value="en">English</option>
+        </select>
+        <button id="btnDemo" class="px-3 py-1.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white text-sm" data-i18n="demo">데모 입력</button>
+        <button id="btnReset" class="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-100 border text-sm" data-i18n="reset">초기화</button>
+      </div>
+    </div>
+    <p class="text-sm text-slate-600 mt-2" data-i18n="disclaimer">연구·교육용 보조 도구입니다. 임상 판단을 대체하지 않습니다.</p>
+  </header>
+
+  <main class="max-w-7xl mx-auto p-4 md:p-6 grid grid-cols-1 xl:grid-cols-3 gap-6">
+    <!-- 입력 패널 -->
+    <section class="card p-4 md:p-6 xl:col-span-2">
+      <div class="flex items-center justify-between">
+        <h2 class="text-lg font-semibold" data-i18n="sec1">환자 정보·초진 입력</h2>
+        <span class="pill" data-i18n="minimal">필수 항목 중심</span>
+      </div>
+
+      <!-- 인적사항 -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
+        <label class="block">
+          <span class="text-sm font-medium" data-i18n="name">이름</span>
+          <input id="ptName" type="text" class="mt-1 w-full rounded-lg border p-2" placeholder="홍길동 / Jane Doe" />
+        </label>
+        <label class="block">
+          <span class="text-sm font-medium" data-i18n="pid">환자번호</span>
+          <input id="ptId" type="text" class="mt-1 w-full rounded-lg border p-2" placeholder="25-0902-001" />
+        </label>
+        <label class="block">
+          <span class="text-sm font-medium" data-i18n="age">나이(세)</span>
+          <input id="age" type="number" min="1" max="110" class="mt-1 w-full rounded-lg border p-2" placeholder="55" />
+        </label>
+        <label class="block">
+          <span class="text-sm font-medium" data-i18n="criterion">개선 기준</span>
+          <select id="criterion" class="mt-1 w-full rounded-lg border p-2">
+            <option value="siegel">Siegel</option>
+            <option value="ppsc">PPSC</option>
+          </select>
+        </label>
+      </div>
+
+      <!-- 발병-치료/측 -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4">
+	  	<label class="block">
+          <span class="text-sm font-medium" data-i18n="onset">발병일</span>
+          <input id="onsetDate" type="date" class="mt-1 w-full rounded-lg border p-2" />
+        </label>
+		  
+        <label class="block">
+          <span class="text-sm font-medium" data-i18n="firsttx">첫 치료일</span>
+          <input id="txDate" type="date" class="mt-1 w-full rounded-lg border p-2" />
+        </label>
+
+        <label class="block">
+          <span class="text-sm font-medium" data-i18n="affected">환측(돌발 측)</span>
+          <select id="affectedSide" class="mt-1 w-full rounded-lg border p-2">
+            <option value="R">우측 / Right</option>
+            <option value="L">좌측 / Left</option>
+          </select>
+        </label>
+		  
+        <div class="flex items-end gap-4">
+          <div class="text-sm">
+            <div class="font-medium" data-i18n="delaylabel">발병→치료 지연(일)</div>
+            <div id="delayDays" class="pill mt-1">—</div>
+          </div>
+<!--
+          <label class="inline-flex items-center gap-2 mt-6"><input id="bilateral" type="checkbox" class="rounded border" /><span class="text-sm" data-i18n="bilat">양측 SSNHL</span></label>
+	  	<label class="inline-flex items-center gap-2 mt-6"><input id="recur" type="checkbox" class="rounded border" />	<span class="text-sm" data-i18n="recur">과거 SSNHL(재발)</span></label>
+-->
+        </div>
+      </div>
+
+      <!-- 증상 -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mt-3">
+	  	<label class="inline-flex items-center gap-2 "><input id="bilateral" type="checkbox" class="rounded border" /><span class="text-sm" data-i18n="bilat">양측 SSNHL</span></label>
+	  	<label class="inline-flex items-center gap-2 "><input id="recur" type="checkbox" class="rounded border" />	<span class="text-sm" data-i18n="recur">과거 SSNHL(재발)</span></label>
+        <label class="inline-flex items-center gap-2"><input id="vertigo" type="checkbox" class="rounded border" />
+		<span class="text-sm" data-i18n="vertigo">현기증</span></label>
+        <label class="inline-flex items-center gap-2"><input id="tinnitus" type="checkbox" class="rounded border" />
+		<span class="text-sm" data-i18n="tinnitus">이명</span></label>
+        <label class="inline-flex items-center gap-2"><input id="dm" type="checkbox" class="rounded border" />
+		<span class="text-sm" data-i18n="dm">당뇨</span></label>
+        <label class="inline-flex items-center gap-2"><input id="htn" type="checkbox" class="rounded border" />
+		<span class="text-sm" data-i18n="htn">고혈압</span></label>
+      </div>
+
+      <hr class="my-6"/>
+
+      <!-- 청력 입력 -->
+      <h3 class="font-semibold" data-i18n="audiotry">초기 기도역치 입력 (dB HL)</h3>
+      <p class="text-sm text-slate-600 mb-2" data-i18n="audiotryhint">주파수: 250–8000 Hz. 환측/반대측 모두 입력 (무반응은 <span class="kbd">S.O</span> 체크).</p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="text-left text-slate-600">
+              <th class="py-2 pr-2" data-i18n="freq">주파수</th>
+              <th class="py-2 pr-2">250</th><th class="py-2 pr-2">500</th><th class="py-2 pr-2">1000</th>
+              <th class="py-2 pr-2">2000</th><th class="py-2 pr-2">4000</th><th class="py-2 pr-2">8000</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="py-1 pr-2 font-medium" data-i18n="aff">환측</td>
+              <td class="hzcell pr-2"><input id="A_250" type="number" min="0" max="120" step="5" class="w-20 rounded border p-1" /><div class="text-[11px] mt-1"><label class="inline-flex items-center gap-1"><input id="SO_250" type="checkbox" />S.O</label></div></td>
+              <td class="hzcell pr-2"><input id="A_500" type="number" min="0" max="120" step="5" class="w-20 rounded border p-1" /><div class="text-[11px] mt-1"><label class="inline-flex items-center gap-1"><input id="SO_500" type="checkbox" />S.O</label></div></td>
+              <td class="hzcell pr-2"><input id="A_1k"  type="number" min="0" max="120" step="5" class="w-20 rounded border p-1" /><div class="text-[11px] mt-1"><label class="inline-flex items-center gap-1"><input id="SO_1k"  type="checkbox" />S.O</label></div></td>
+              <td class="hzcell pr-2"><input id="A_2k"  type="number" min="0" max="120" step="5" class="w-20 rounded border p-1" /><div class="text-[11px] mt-1"><label class="inline-flex items-center gap-1"><input id="SO_2k"  type="checkbox" />S.O</label></div></td>
+              <td class="hzcell pr-2"><input id="A_4k"  type="number" min="0" max="120" step="5" class="w-20 rounded border p-1" /><div class="text-[11px] mt-1"><label class="inline-flex items-center gap-1"><input id="SO_4k"  type="checkbox" />S.O</label></div></td>
+              <td class="hzcell pr-2"><input id="A_8k"  type="number" min="0" max="120" step="5" class="w-20 rounded border p-1" /><div class="text-[11px] mt-1"><label class="inline-flex items-center gap-1"><input id="SO_8k"  type="checkbox" />S.O</label></div></td>
+            </tr>
+            <tr>
+              <td class="py-1 pr-2 font-medium" data-i18n="contra">반대측</td>
+              <td class="hzcell pr-2"><input id="C_250" type="number" min="0" max="120" step="5" class="w-20 rounded border p-1" /></td>
+              <td class="hzcell pr-2"><input id="C_500" type="number" min="0" max="120" step="5" class="w-20 rounded border p-1" /></td>
+              <td class="hzcell pr-2"><input id="C_1k"  type="number" min="0" max="120" step="5" class="w-20 rounded border p-1" /></td>
+              <td class="hzcell pr-2"><input id="C_2k"  type="number" min="0" max="120" step="5" class="w-20 rounded border p-1" /></td>
+              <td class="hzcell pr-2"><input id="C_4k"  type="number" min="0" max="120" step="5" class="w-20 rounded border p-1" /></td>
+              <td class="hzcell pr-2"><input id="C_8k"  type="number" min="0" max="120" step="5" class="w-20 rounded border p-1" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+        <div class="space-y-1 text-sm">
+          <div data-i18n="pta4">환측 4분법 PTA(0.5/1/2/4 kHz):</div> <span id="pta4" class="pill">—</span>
+          <div data-i18n="pta6">환측 6분법 PTA(0.25–8 kHz):</div> <span id="pta6" class="pill">—</span>
+          <div data-i18n="pta4c">반대측 PTA(4분법):</div> <span id="pta4C" class="pill">—</span>
+          <div data-i18n="iadiff">환측–반대측 차(IA, 4분법):</div> <span id="iadiff" class="pill">—</span>
+          <div data-i18n="hfslope">고주파 경사(HF–LF, dB):</div> <span id="hfslope" class="pill">—</span> <span class="text-slate-500 text-xs" data-i18n="hfhint">(양수=고주파 더 나쁨)</span>
+          <div data-i18n="shapeauto">자동 형태 분류:</div> <span id="shapeAuto" class="pill">—</span>
+          <label class="block mt-1">
+            <span class="text-sm font-medium" data-i18n="shape">오디오그램 형태 (수동 재지정 가능)</span>
+            <select id="shape" class="mt-1 w-full rounded-lg border p-2">
+              <option value="auto" data-i18n="auto">자동 (권장)</option>
+              <option value="up" data-i18n="up">오름형</option>
+              <option value="flat" data-i18n="flat">평탄형</option>
+              <option value="down" data-i18n="down">내림형</option>
+              <option value="profound" data-i18n="profound">전농/초고도</option>
+            </select>
+          </label>
+        </div>
+
+        <!-- 치료/혈액 -->
+        <div class="space-y-2">
+          <h3 class="font-semibold" data-i18n="therapy">치료 계획</h3>
+          <label class="inline-flex items-center gap-2">
+            <input id="steroid" type="checkbox" class="rounded border" />
+            <span class="text-sm" data-i18n="steroid">스테로이드 투여</span>
+          </label>
+          <select id="steroidRoute" class="w-full rounded-lg border p-2">
+            <option value="none" data-i18n="route">경로 선택</option>
+            <option value="oral" data-i18n="oral">경구</option>
+            <option value="it" data-i18n="it">고실내</option>
+            <option value="both" data-i18n="both">병용</option>
+          </select>
+          <label class="inline-flex items-center gap-2">
+            <input id="hbot" type="checkbox" class="rounded border" />
+            <span class="text-sm" data-i18n="hbot">고압산소치료(HBOT)</span>
+          </label>
+
+          <h3 class="font-semibold mt-4" data-i18n="labs">혈액 (절대치 → 자동 NLR)</h3>
+          <div class="grid grid-cols-2 gap-2">
+            <label class="block">
+              <span class="text-sm" data-i18n="neut">호중구 (×10⁹/L)</span>
+              <input id="neut" type="number" min="0" step="0.1" class="mt-1 w-full rounded-lg border p-2" placeholder="4.2" />
+            </label>
+            <label class="block">
+              <span class="text-sm" data-i18n="lymph">림프구 (×10⁹/L)</span>
+              <input id="lymph" type="number" min="0" step="0.1" class="mt-1 w-full rounded-lg border p-2" placeholder="1.6" />
+            </label>
+          </div>
+          <div class="text-sm" data-i18n="nlr">자동 NLR:</div> <span id="nlrShow" class="pill">—</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 결과 패널 -->
+    <aside class="card p-4 md:p-6 xl:col-span-1">
+      <h2 class="text-lg font-semibold" data-i18n="result">예측 결과</h2>
+      <div class="mt-3 text-sm text-slate-600" data-i18n="target">목표: 기준(상단 선택)에 따른 1개월 내 임상적 호전 확률</div>
+
+      <!-- 단측(기본) -->
+      <div class="mt-4">
+        <div class="flex items-center justify-between">
+          <div class="font-semibold" data-i18n="affprob">환측 호전 확률</div>
+          <div id="riskBadge" class="pill bg-white"></div>
+        </div>
+        <div class="meter mt-1"><div id="bar" style="width:0%; background: linear-gradient(90deg,#22c55e,#eab308,#ef4444);"></div></div>
+        <div class="flex items-center justify-between text-sm mt-1"><span class="text-slate-600">0%</span><span id="probLabel" class="font-semibold">—</span><span class="text-slate-600">100%</span></div>
+      </div>
+
+      <!-- 양측 케이스: 좌/우 각각 -->
+      <div id="bilatBox" class="mt-6 hidden">
+        <h3 class="font-semibold text-sm" data-i18n="bilatprobs">양측 케이스: 좌/우 각각</h3>
+        <div class="grid grid-cols-2 gap-3 mt-2">
+          <div class="card p-3">
+            <div class="text-sm font-medium">Left</div>
+            <div class="meter mt-1"><div id="barL" style="width:0%; background: linear-gradient(90deg,#22c55e,#eab308,#ef4444);"></div></div>
+            <div class="flex items-center justify-between text-sm mt-1"><span>0%</span><span id="probLabelL" class="font-semibold">—</span><span>100%</span></div>
+          </div>
+          <div class="card p-3">
+            <div class="text-sm font-medium">Right</div>
+            <div class="meter mt-1"><div id="barR" style="width:0%; background: linear-gradient(90deg,#22c55e,#eab308,#ef4444);"></div></div>
+            <div class="flex items-center justify-between text-sm mt-1"><span>0%</span><span id="probLabelR" class="font-semibold">—</span><span>100%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <h3 class="font-semibold text-sm" data-i18n="contrib">기여도(설명 가능성)</h3>
+        <ul id="contrib" class="mt-2 space-y-1 text-sm"></ul>
+      </div>
+
+      <div class="mt-6">
+        <details class="rounded-lg bg-slate-50 p-3">
+          <summary class="font-semibold text-sm" data-i18n="weights">가중치/모형 설정 보기·편집</summary>
+          <div class="mt-3 space-y-2 text-sm">
+            <p class="text-slate-600" data-i18n="weightsHint">문헌 OR/효과방향을 반영한 초기 가중치입니다. 센터 데이터로 조정 가능.</p>
+            <div class="grid grid-cols-1 gap-2">
+              <label class="flex items-center justify-between gap-4"><span>intercept</span><input id="w_intercept" type="number" step="0.01" class="w-28 rounded border p-1 mono"></label>
+              <label class="flex items-center justify-between gap-4"><span data-i18n="wdelay">지연 ≥7일</span><input id="w_delay7" type="number" step="0.01" class="w-28 rounded border p-1 mono"></label>
+              <label class="flex items-center justify-between gap-4"><span data-i18n="wvertigo">현기증</span><input id="w_vertigo" type="number" step="0.01" class="w-28 rounded border p-1 mono"></label>
+              <label class="flex items-center justify-between gap-4"><span data-i18n="wbilat">양측</span><input id="w_bilateral" type="number" step="0.01" class="w-28 rounded border p-1 mono"></label>
+              <label class="flex items-center justify-between gap-4"><span data-i18n="wrecur">재발</span><input id="w_recur" type="number" step="0.01" class="w-28 rounded border p-1 mono"></label>
+              <label class="flex items-center justify-between gap-4"><span data-i18n="wage">나이/10y</span><input id="w_age10" type="number" step="0.01" class="w-28 rounded border p-1 mono"></label>
+              <label class="flex items-center justify-between gap-4"><span>PTA(4)/10 dB</span><input id="w_pta10" type="number" step="0.01" class="w-28 rounded border p-1 mono"></label>
+              <label class="flex items-center justify-between gap-4"><span>IA/10 dB</span><input id="w_ia10" type="number" step="0.01" class="w-28 rounded border p-1 mono"></label>
+              <label class="flex items-center justify-between gap-4"><span data-i18n="wflat">형태: 평탄</span><input id="w_flat" type="number" step="0.01" class="w-28 rounded border p-1 mono"></label>
+              <label class="flex items-center justify-between gap-4"><span data-i18n="wdown">형태: 내림</span><input id="w_down" type="number" step="0.01" class="w-28 rounded border p-1 mono"></label>
+              <label class="flex items-center justify-between gap-4"><span data-i18n="wprof">형태: 전농</span><input id="w_profound" type="number" step="0.01" class="w-28 rounded border p-1 mono"></label>
+              <label class="flex items-center justify-between gap-4"><span>HF–LF/10 dB</span><input id="w_hfslope10" type="number" step="0.01" class="w-28 rounded border p-1 mono"></label>
+              <label class="flex items-center justify-between gap-4"><span>Steroid(early)</span><input id="w_steroid_early" type="number" step="0.01" class="w-28 rounded border p-1 mono"></label>
+              <label class="flex items-center justify-between gap-4"><span>Steroid(late)</span><input id="w_steroid_late" type="number" step="0.01" class="w-28 rounded border p-1 mono"></label>
+              <label class="flex items-center justify-between gap-4"><span>IT bonus</span><input id="w_it_bonus" type="number" step="0.01" class="w-28 rounded border p-1 mono"></label>
+              <label class="flex items-center justify-between gap-4"><span>HBOT</span><input id="w_hbot" type="number" step="0.01" class="w-28 rounded border p-1 mono"></label>
+              <label class="flex items-center justify-between gap-4"><span>NLR/unit</span><input id="w_nlr_unit" type="number" step="0.001" class="w-28 rounded border p-1 mono"></label>
+              <label class="flex items-center justify-between gap-4"><span>DM</span><input id="w_dm" type="number" step="0.01" class="w-28 rounded border p-1 mono"></label>
+              <label class="flex items-center justify-between gap-4"><span>HTN</span><input id="w_htn" type="number" step="0.01" class="w-28 rounded border p-1 mono"></label>
+            </div>
+            <div class="flex items-center gap-2">
+              <button id="btnApplyWeights" class="px-3 py-1.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white text-sm" data-i18n="apply">가중치 적용</button>
+              <button id="btnDefaultWeights" class="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-100 border text-sm" data-i18n="restore">기본값 복원</button>
+            </div>
+          </div>
+        </details>
+      </div>
+    </aside>
+
+    <!-- 요약/저장 -->
+    <section class="card p-4 md:p-6 xl:col-span-3">
+      <div class="flex items-center justify-between">
+        <h2 class="text-lg font-semibold" data-i18n="export">결과 저장·내보내기</h2>
+        <div class="flex items-center gap-2">
+          <button id="btnCopy" class="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-100 border text-sm" data-i18n="copy">요약 복사</button>
+          <button id="btnPDF" class="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-100 border text-sm">PDF 저장</button>
+          <button id="btnSave" class="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-100 border text-sm" data-i18n="save">로컬 저장</button>
+          <button id="btnLoad" class="px-3 py-1.5 rounded-xl bg-white hover:bg-slate-100 border text-sm" data-i18n="load">불러오기</button>
+        </div>
+      </div>
+      <pre id="summary" class="mt-4 p-3 bg-slate-50 rounded-lg overflow-x-auto text-xs" hidden></pre>
+      <p class="text-xs text-slate-600 mt-3" data-i18n="disclaimer2">면책: 연구·교육 목적 보조도구입니다(의료기기 아님). 임상 결정은 전문의 판단을 따릅니다.</p>
+    </section>
+  </main>
+
+  <script src="SSNHL_predi_ver_3_0.js"></script>
+</body>
+</html>
