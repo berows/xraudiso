@@ -5,14 +5,16 @@ include_once('sub_04.php');
 ?>
 
 <link rel="stylesheet" href="../css/style.sub.css?ver=<?= time() ?>">
+<link rel="stylesheet" href="../../css/style.css">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
     tailwind.config = {
         corePlugins: {
-            preflight: false, // 기본 스타일 초기화를 비활성화하여 기존 푸터 보호
+            preflight: false,
         }
     }
 </script>
+<nav></nav>
 <!--
 <div class="cont_wrap no-padding" data-aos="fade-up">
     <h4>검사</h4>
@@ -41,6 +43,9 @@ include_once('sub_04.php');
 </script>
 <script src="../exam/js/slider.min.js"></script>
 
+<footer></footer>
+<script src="../../js/components.js"></script>
+
 <?php
 include_once(G5_PATH . '/tail.php');
-?>  
+?>

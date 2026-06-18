@@ -4,9 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SSNHL 청력 호전 예측 시뮬레이터 · 외래 초진용 (v0.3)</title>
+  <link rel="stylesheet" href="../../css/style.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = { theme:{ extend:{ colors:{ brand:{DEFAULT:'#0ea5e9',50:'#e0f2fe',500:'#0ea5e9',600:'#0284c7'} }}}}
+    tailwind.config = {
+      corePlugins: { preflight: false },
+      theme:{ extend:{ colors:{ brand:{DEFAULT:'#0ea5e9',50:'#e0f2fe',500:'#0ea5e9',600:'#0284c7'} }}}
+    }
   </script>
   <!-- jsPDF for PDF export -->
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-YcsIPQn0i0kCE3b2cK8W2mTtYpN0c9lW5X7s3Q8Xz6B7kzZ0a2zVw9NfCSn9r6iQm9u7y2xCqJg5b5NQmQn5sw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
@@ -16,6 +20,7 @@
   <link rel="stylesheet" href="SSNHL_predi_ver_3_0.css">
 </head>
 <body class="bg-slate-50 text-slate-900">
+  <nav></nav>
   <header class="max-w-7xl mx-auto p-4 md:p-6">
     <div class="flex items-center justify-between gap-4">
       <h1 class="text-xl md:text-2xl font-semibold" data-i18n="title">SSNHL 청력 호전 예측 시뮬레이터 <span class="pill">외래 초진용 · v0.3</span></h1>
@@ -286,6 +291,8 @@
     </section>
   </main>
 
+  <footer></footer>
   <script src="SSNHL_predi_ver_3_0.js"></script>
+  <script src="../../js/components.js"></script>
 </body>
 </html>
