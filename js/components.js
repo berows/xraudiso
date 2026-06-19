@@ -11,7 +11,7 @@
     nav.innerHTML = `
       <div class="nav-inner">
         <a href="${base}index.html" class="logo">
-          <img src="${base}images/xraudiso.png" alt="Audiso 오디에스오" />
+          <img src="${base}images/audiso.svg" alt="Audiso 오디에스오" /><span class="logo-tag">Tech.</span>
         </a>
         <ul class="nav-links">
           <li><a href="${base}index.html#product">제품</a></li>
