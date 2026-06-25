@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+  <title>Audiso Vision Total Pro</title>
+  <style>
+    :root {
+      --bg: #ffffff; --card: #f8fafc; --accent: #7a3efc; --text: #0f172a;
+      --muted: #64748b; --border: #e2e8f0; --red: #ff4b4b; --green: #2ecc71;
+    }
+    * { box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
+    html, body { height: 100%; margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: system-ui, sans-serif; overflow: hidden; }
+    .app { display: flex; flex-direction: column; height: 100vh; width: 100vw; }
+    header { padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); background: #fff; z-index: 100; }
+    .logo-area { font-weight: 900; font-size: 22px; color: var(--accent); cursor: pointer; }
+    .btn-settings { padding: 8px 16px; border-radius: 10px; border: 1px solid var(--border); background: #fff; cursor: pointer; font-weight: 700; z-index: 9999; }
+    
+    main { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    section.screen { display: none; width: 100%; height: 100%; flex-direction: column; align-items: center; justify-content: center; padding: 10px; }
+    section.screen.active { display: flex; }
+
+    /* 키오스크 대화면 최적화: 카드 크기 및 시표 영역 확대 */
+    .card { width: 95%; max-width: 1100px; height: 90vh; background: #fff; padding: 30px; border-radius: 32px; box-shadow: 0 15px 50px rgba(0,0,0,0.08); border: 1px solid var(--border); text-align: center; display: flex; flex-direction: column; justify-content: center; }
+    
+    .stim-display { 
+      flex: 1;
+      width: 100%; 
+      background: #fff; 
+      margin: 15px 0; 
+      border-radius: 24px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      border: 2px solid #f1f5f9; 
+      overflow: hidden; 
+      position: relative;
+    }
+    /* 시표 이미지/SVG 크기 확대 */
+    .stim-display img, .stim-display svg { height: 95%; width: 95%; object-fit: contain; }
+
+    .btn-group { width: 100%; display: flex; gap: 15px; margin-top: 10px; }
+    .btn-opt { flex: 1; height: 120px; border-radius: 24px; border: 4px solid #f1f5f9; background: #f8fafc; font-weight: 800; font-size: 36px; color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+    .btn-opt.selected { border-color: var(--accent); background: #f1f0ff; color: var(--accent); transform: scale(1.02); }
+
+    .result-grid { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+    .result-item { text-align: left; padding: 12px; border-radius: 15px; background: #f8fafc; border: 1px solid #eee; }
+    .res-label { font-size: 14px; color: var(--muted); font-weight: 600; }
+    .res-val { font-weight: 900; color: var(--accent); font-size: 24px; display: block; }
+
+    .analysis-box { background: #f1f0ff; padding: 20px; border-radius: 20px; margin-top: 15px; text-align: left; border-left: 8px solid var(--accent); }
+    .start-btn { width: 100%; padding: 25px; border-radius: 20px; background: var(--accent); color: #fff; border: none; font-size: 32px; font-weight: 800; cursor: pointer; pointer-events: none; }
+    
+    .form-group { width: 100%; text-align: left; margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .form-group input, .form-group select { width: 100%; padding: 22px; border-radius: 16px; border: 1px solid var(--border); font-size: 22px; }
+    .calib-card-guide { width: 85.6mm; height: 53.98mm; border: 3px dashed var(--accent); margin: 15px auto; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: #f1f0ff; transform-origin: center; }
+  </style>
+</head>
+<body onkeydown="handleGlobalKey(event)" onclick="handleGlobalClick(event)" tabindex="0">
+  <div class="app">
+    <header>
+      <div class="logo-area" onclick="location.reload()">Audiso <span>Vision</span></div>
+      <button class="btn-settings" id="btnSettings" onclick="event.stopPropagation(); openSettings()">설정/로그</button>
+    </header>
+
+    <main id="mainFrame">
+      <section id="scr-intro" class="screen active">
+        <div class="card">
+          <h1 style="font-size: 56px; margin: 0 0 30px;">종합 눈 건강 측정</h1>
+          <div style="margin-bottom: 40px;"><div class="start-btn">검사 시작하기</div></div>
+          <p style="font-size: 22px; color: var(--muted);">화면 터치 또는 리모컨 [OK]</p>
+        </div>
+      </section>
+
+      <section id="scr-info" class="screen">
+        <div class="card">
+          <h2 style="font-size: 42px; margin-bottom: 30px;">검사 대상 정보</h2>
+          <div class="form-group"><label>학번</label><input type="text" id="stu-id" placeholder="학번 입력"></div>
+          <div class="form-group"><label>이름</label><input type="text" id="stu-name" placeholder="이름 입력"></div>
+          <div class="start-btn" style="pointer-events: auto; margin-top:20px;" onclick="event.stopPropagation(); startFlow()">정보 입력 완료</div>
+        </div>
+      </section>
+
+      <section id="scr-settings" class="screen">
+        <div class="card" style="text-align: left; overflow-y: auto;">
+          <h2 style="text-align: center;">관리자 설정</h2>
+          <div class="form-group" style="text-align: center;">
+            <label>배율 보정 (카드 대조)</label>
+            <div class="calib-card-guide" id="calibCard"></div>
+            <input type="range" id="cfg-scale" min="0.5" max="3.0" step="0.01" value="1.0" oninput="updateCalib()" style="width:100%">
+          </div>
+          <div class="form-group">
+            <label>시력표 종류</label>
+            <select id="cfg-type"><option value="ENG">영문 (Alphabet)</option><option value="NUM">숫자 (Number)</option></select>
+          </div>
+          <div class="btn-group">
+            <button class="btn-opt" style="background:var(--green); color:#fff; font-size:24px; height:80px;" onclick="downloadCSV(event)">CSV 다운</button>
+            <button class="btn-opt" style="background:var(--red); color:#fff; font-size:24px; height:80px;" onclick="clearLogs(event)">로그 삭제</button>
+          </div>
+          <div class="start-btn" style="margin-top:20px; pointer-events:auto;" onclick="event.stopPropagation(); saveSettings()">저장 및 닫기</div>
+        </div>
+      </section>
+
+      <section id="scr-test" class="screen">
+        <div class="card">
+          <h2 id="testTitle" style="font-size: 42px; margin:0;"></h2>
+          <div id="testInfo" style="margin:10px 0; color:var(--accent); font-weight:800; font-size:28px;"></div>
+          <div class="stim-display" id="displayArea"></div>
+          <div class="btn-group" id="btnGroup"></div>
+        </div>
+      </section>
+
+      <section id="scr-result" class="screen">
+        <div class="card" style="overflow-y: auto; justify-content: flex-start;">
+          <h2 style="font-size: 42px; margin: 20px 0 10px;">검진 결과 리포트</h2>
+          <div id="stuDisplay" style="font-size: 24px; font-weight:700; color:var(--muted); margin-bottom:10px;"></div>
+          <div class="result-grid" id="resGrid"></div>
+          <div class="analysis-box">
+            <h3 style="margin:0 0 10px 0; font-size:28px; color:var(--accent);">종합 결과 분석</h3>
+            <p id="analysisText" style="margin:0; font-size:22px; line-height:1.7; color:#334155; white-space: pre-wrap;"></p>
+          </div>
+          <div class="start-btn" style="margin-top:30px; pointer-events:auto;" onclick="location.reload()">확인 완료 (처음으로)</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const STEPS = [{d:0.1,sz:100},{d:0.3,sz:33},{d:0.5,sz:20},{d:0.7,sz:14},{d:0.9,sz:11},{d:1.0,sz:10},{d:1.2,sz:8}];
+    const SURVEY_QS = [
+      "평소 칠판이나 화면의 글씨가 흐릿하게 보이나요?",
+      "현재 안경이나 콘택트렌즈를 착용 중인가요?",
+      "눈이 자주 피로하거나 통증을 느끼는 편인가요?"
+    ];
+    const PLATE_VALS = ['8', 'X', 'O', 'I', 'V', '8', 'X', 'O'];
+
+    let config = { scale: 1.0, type: 'ENG' };
+    let state = { 
+      screen: 'intro', test: 'survey', eye: 'right', stepIdx: 0, 
+      records: { survey: [] }, focus: 0, stu: {}, colorSet: [], colorIdx: 0, colorScore: 0, failCount: 0 
+    };
+
+    // 색각 이미지 SVG 동적 생성 (키오스크 가독성 위해 밀도 상향)
+    function generateIshiharaPlate(char) {
+        let svg = `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="border-radius:50%; background:#fef9e7; width:100%; height:100%;">`;
+        for(let i=0; i<650; i++) {
+            let x = Math.random() * 180 + 10;
+            let y = Math.random() * 180 + 10;
+            let r = Math.random() * 3.5 + 2;
+            let isInside = checkPatternInside(x, y, char);
+            let color = isInside ? `hsl(${Math.random()*40 + 10}, 85%, 50%)` : `hsl(${Math.random()*60 + 90}, 20%, 70%)`;
+            svg += `<circle cx="${x}" cy="${y}" r="${r}" fill="${color}" />`;
+        }
+        svg += `</svg>`;
+        return svg;
+    }
+    function checkPatternInside(x, y, char) {
+        if(char === '8') return (Math.abs(x-100)<38 && (Math.abs(y-65)<32 || Math.abs(y-135)<32));
+        if(char === 'X') return Math.abs(Math.abs(x-100) - Math.abs(y-100)) < 20;
+        if(char === 'O') return Math.abs(Math.sqrt(Math.pow(x-100,2) + Math.pow(y-100,2)) - 60) < 20;
+        if(char === 'I') return Math.abs(x-100) < 20;
+        if(char === 'V') return (Math.abs(x-100)*1.7 - (y-40)) < 18 && y > 40;
+        return false;
+    }
+
+    // 전역 이벤트 처리: 기기 시작 및 조작 이슈 방지
+    function handleGlobalClick() { if (state.screen === 'intro') showScreen('info'); }
+    function handleGlobalKey(e) {
+      const k = e.keyCode || e.which;
+      if ([13, 66, 23, 160].includes(k)) {
+        if (state.screen === 'intro') showScreen('info');
+        else if (state.screen === 'test') processLogic();
+      } else if (state.screen === 'test') {
+        if ([37, 21].includes(k)) moveFocus(0);
+        if ([39, 22].includes(k)) moveFocus(1);
+        if ([40, 20].includes(k) && state.test === 'duo') moveFocus(2);
+      }
+    }
+
+    function startFlow() {
+      state.stu = { id: document.getElementById('stu-id').value, name: document.getElementById('stu-name').value };
+      state.test = 'survey'; state.stepIdx = 0; renderTest();
+    }
+
+    function processLogic() {
+      if(state.test === 'survey') {
+        state.records.survey.push(state.focus === 0 ? "Y" : "N");
+        state.stepIdx++;
+        if(state.stepIdx < SURVEY_QS.length) renderTest();
+        else { state.test = 'ac'; state.eye = 'right'; state.stepIdx = 0; renderTest(); }
+      }
+      else if(state.test === 'ac') {
+        if(state.focus === 0) { 
+          state.failCount=0; if(state.stepIdx < STEPS.length-1) { state.stepIdx++; renderTest(); } else finishAc(); 
+        } else { 
+          state.failCount++; if(state.failCount === 1) renderTest(); else finishAc(); 
+        }
+      } 
+      else if(state.test === 'duo') { state.records.duo = ["적색선명","균등함","녹색선명"][state.focus]; state.test = 'astig'; renderTest(); }
+      else if(state.test === 'astig') { state.records.astig = state.focus === 0 ? "균일" : "불규칙"; state.test = 'ams'; renderTest(); }
+      else if(state.test === 'ams') { 
+        state.records.ams = state.focus === 0 ? "정상" : "의심"; 
+        state.colorSet = [...PLATE_VALS].sort(() => Math.random() - 0.5).slice(0, 5);
+        state.colorIdx = 0; state.colorScore = 0; state.test = 'color'; renderTest(); 
+      } 
+      else if(state.test === 'color') { if(state.focus === 0) state.colorScore++; state.colorIdx++; if(state.colorIdx < 5) renderTest(); else showResult(); }
+    }
+
+    function renderTest() {
+      showScreen('test');
+      const disp = document.getElementById('displayArea');
+      const grp = document.getElementById('btnGroup');
+      disp.innerHTML = ''; grp.innerHTML = ''; state.focus = 0;
+
+      if(state.test === 'survey') {
+        document.getElementById('testTitle').textContent = "문진 설문";
+        document.getElementById('testInfo').textContent = `질문 ${state.stepIdx + 1} / ${SURVEY_QS.length}`;
+        disp.innerHTML = `<div style="font-size:46px; font-weight:800; padding:40px; line-height:1.6; color:#1e293b;">${SURVEY_QS[state.stepIdx]}</div>`;
+        ["예", "아니오"].forEach((t, i) => addBtn(grp, t, i));
+      }
+      else if(state.test === 'ac') {
+        const s = STEPS[state.stepIdx];
+        document.getElementById('testTitle').textContent = (state.eye==='right'?'우측 눈':'좌측 눈') + " 시력 측정";
+        document.getElementById('testInfo').textContent = `측정 단계: ${s.d} ${state.failCount===1?'(재확인)':''}`;
+        // 시표 크기를 키오스크에 맞게 대폭 확대
+        const sz = s.sz * 7.5 * config.scale; 
+        disp.innerHTML = `<div style="font-size:${sz}px; font-weight:900; color:#000;">${(config.type==='NUM'?'123456789':'HKNPRZ')[Math.floor(Math.random()*6)]}</div>`;
+        ["보임", "안 보임"].forEach((t, i) => addBtn(grp, t, i));
+      } else if(state.test === 'duo') {
+        document.getElementById('testTitle').textContent = "적녹 굴절 검사";
+        disp.innerHTML = `<div style="display:flex; width:100%; height:100%;"><div style="flex:1; background:var(--red); font-size:120px; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:900;">8</div><div style="flex:1; background:var(--green); font-size:120px; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:900;">8</div></div>`;
+        ["빨강 선명", "둘다 비슷", "초록 선명"].forEach((t, i) => addBtn(grp, t, i));
+      } else if(state.test === 'astig') {
+        document.getElementById('testTitle').textContent = "난시 정밀 검사";
+        let svg = `<svg viewBox="0 0 300 300" style="width:90%; height:90%;">`; for(let i=0; i<180; i+=15) svg += `<line x1="${150+130*Math.cos(i*Math.PI/180)}" y1="${150+130*Math.sin(i*Math.PI/180)}" x2="${150-130*Math.cos(i*Math.PI/180)}" y2="${150-130*Math.sin(i*Math.PI/180)}" stroke="#000" stroke-width="6"/>`;
+        disp.innerHTML = svg + `</svg>`;
+        ["균일함", "선 굵기 다름"].forEach((t, i) => addBtn(grp, t, i));
+      } else if(state.test === 'ams') {
+        document.getElementById('testTitle').textContent = "황반(망막) 검사";
+        let grid = `<svg viewBox="0 0 300 300" style="background:#fff; width:90%; height:90%;">`; for(let i=0; i<=300; i+=20) { grid += `<line x1="${i}" y1="0" x2="${i}" y2="300" stroke="#000" stroke-width="1"/><line x1="0" y1="${i}" x2="300" y2="${i}" stroke="#000" stroke-width="1"/>`; } grid += `<circle cx="150" cy="150" r="8" fill="red"/></svg>`;
+        disp.innerHTML = grid; ["정상", "선이 휨/가려짐"].forEach((t, i) => addBtn(grp, t, i));
+      } else if(state.test === 'color') {
+        document.getElementById('testTitle').textContent = "색각 이상 검사";
+        document.getElementById('testInfo').textContent = `${state.colorIdx+1} / 5 문항`;
+        disp.innerHTML = generateIshiharaPlate(state.colorSet[state.colorIdx]);
+        ["보임", "안 보임"].forEach((t, i) => addBtn(grp, t, i));
+      }
+    }
+
+    function addBtn(parent, text, idx) {
+      let b = document.createElement('div'); b.className = 'btn-opt' + (idx===0?' selected':''); b.textContent = text;
+      b.onclick = (e) => { e.stopPropagation(); state.focus = idx; processLogic(); }; parent.appendChild(b);
+    }
+
+    function finishAc() {
+      let val = STEPS[state.stepIdx > 0 && state.failCount >= 2 ? state.stepIdx - 1 : state.stepIdx].d;
+      state.records[state.eye] = val; state.failCount = 0;
+      if(state.eye === 'right') { state.eye='left'; state.stepIdx=0; renderTest(); } else { state.test='duo'; renderTest(); }
+    }
+
+    function showResult() {
+      showScreen('result');
+      const R = state.records; const cScore = state.colorScore;
+      document.getElementById('stuDisplay').textContent = `${state.stu.id} ${state.stu.name} 님`;
+      const items = [{t:"우안 시력",v:R.right},{t:"좌안 시력",v:R.left},{t:"색각 결과",v:cScore+"/5"},{t:"적녹 굴절",v:R.duo},{t:"난시 여부",v:R.astig},{t:"망막 상태",v:R.ams}];
+      document.getElementById('resGrid').innerHTML = items.map(i => `<div class="result-item"><span class="res-label">${i.t}</span><span class="res-val">${i.v}</span></div>`).join('');
+      
+      let analysis = ""; let isNormal = true;
+      if(parseFloat(R.right) < 0.7 || parseFloat(R.left) < 0.7) { analysis += "• [주의] 시력이 낮게 측정되었습니다. 안경 도수 확인이나 안과 정밀 검진을 권장합니다.\n"; isNormal = false; }
+      if(cScore < 4) { analysis += "• [주의] 색각 이상 소견이 발견되었습니다. 정밀 색각 검사가 필요합니다.\n"; isNormal = false; }
+      if(R.ams === "의심") { analysis += "• [경고] 격자 선이 휘어보인다면 황반 변성 등 망막 질환일 수 있으니 즉시 안과를 방문하세요.\n"; isNormal = false; }
+      if(R.survey[0] === 'Y') { analysis += "• [자각] 일상생활에서 시야가 흐릿함을 느끼고 있습니다. 조절 피로일 가능성이 높습니다.\n"; }
+      
+      if(isNormal) analysis = "축하합니다! 모든 검사 결과가 양호합니다. \n정기적인 검진으로 소중한 눈 건강을 계속 지켜주세요.";
+      else analysis = "검사 결과 일부 항목에서 주의 소견이 있습니다.\n\n" + analysis + "\n※ 본 검사는 간이 선별 검사입니다. 정확한 진단은 안과 전문의와 상담하십시오.";
+      
+      document.getElementById('analysisText').innerText = analysis;
+      saveLog();
+    }
+
+    function saveLog() {
+      const R = state.records;
+      const log = { date: new Date().toLocaleString(), id: state.stu.id, name: state.stu.name, r: R.right, l: R.left, color: state.colorScore+"/5", duo: R.duo, astig: R.astig, ams: R.ams, s1: R.survey[0] };
+      let logs = JSON.parse(localStorage.getItem('school_logs') || "[]"); logs.push(log); localStorage.setItem('school_logs', JSON.stringify(logs));
+    }
+
+    function updateCalib() { document.getElementById('calibCard').style.transform = `scale(${document.getElementById('cfg-scale').value})`; }
+    function openSettings() { showScreen('settings'); updateCalib(); }
+    function saveSettings() { config.scale = parseFloat(document.getElementById('cfg-scale').value); config.type = document.getElementById('cfg-type').value; showScreen('intro'); }
+    function downloadCSV(e) { e.stopPropagation(); let logs = JSON.parse(localStorage.getItem('school_logs') || "[]"); if(!logs.length) return alert("데이터 없음"); let csv = "\uFEFF날짜,학번,이름,우안,좌안,색각,적녹,난시,망막\n"; logs.forEach(l => { csv += `${l.date},${l.id},${l.name},${l.r},${l.l},${l.color},${l.duo},${l.astig},${l.ams}\n`; }); window.open(URL.createObjectURL(new Blob([csv], {type:"text/csv;charset=utf-8;"}))); }
+    function clearLogs(e) { e.stopPropagation(); if(confirm("초기화?")) localStorage.setItem('school_logs', "[]"); }
+    function moveFocus(idx) { state.focus = idx; document.querySelectorAll('.btn-opt').forEach((b, i) => b.classList.toggle('selected', i === idx)); }
+    function showScreen(id) { state.screen = id; document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); document.getElementById('scr-' + id).classList.add('active'); document.getElementById('btnSettings').style.display = (id === 'intro' ? 'block' : 'none'); }
+    
+    window.onload = () => { document.body.focus(); };
+  </script>
+</body>
+</html>
