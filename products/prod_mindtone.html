@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>마인드톤 플러스 — Audiso</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="css/products.css" />
+  <style>
+    /* ── 히어로 ── */
+    .mt-hero {
+      background: linear-gradient(135deg, #c2e8f2 0%, #daf2f8 50%, #e8f8fc 100%);
+      color: #1a3d4a;
+      padding: 80px 20px;
+    }
+    .mt-hero .prod-hero-inner { align-items: center; }
+    .mt-hero .prod-hero-img {
+      border-radius: 20px;
+      box-shadow: 0 24px 64px rgba(15, 48, 64, 0.18), 0 8px 24px rgba(15, 48, 64, 0.1);
+    }
+    .mt-hero .detail-back { color: rgba(26,61,74,0.45); }
+    .mt-hero .detail-back:hover { color: #1a3d4a; }
+    .mt-hero h1 {
+      font-size: clamp(30px, 3.5vw, 46px); font-weight: 800;
+      letter-spacing: -1px; line-height: 1.2; margin-bottom: 10px; color: #0f3040;
+    }
+    .mt-hero h1 span { color: #2b7a8a; }
+    .mt-hero-desc {
+      font-size: 16px; color: rgba(26,61,74,0.65);
+      line-height: 1.85; margin-bottom: 30px;
+    }
+    .mt-store-btns { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .mt-store-btn { display: inline-block; transition: opacity 0.2s; }
+    .mt-store-btn:hover { opacity: 0.8; }
+    .mt-store-btn img { height: 44px; display: block; }
+
+    /* ── Core Value ── */
+    .section-core { background: #fafafa; }
+    .section-core .prod-eyebrow { color: #6366f1; }
+    .prod-card.icon:hover { box-shadow: 0 8px 32px rgba(99,102,241,0.1); }
+
+    /* ── Features ── */
+    .section-features .prod-eyebrow { color: #6366f1; }
+    .section-features .prod-split { margin-bottom: 96px; }
+    .section-features .prod-split:last-child { margin-bottom: 0; }
+    .section-features .prod-split-text p { margin-bottom: 28px; }
+    .mt-scale-list { display: flex; flex-direction: column; gap: 10px; }
+    .mt-scale-item {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 14px; color: #374151;
+      background: #f5f5ff; border-radius: 10px; padding: 12px 16px;
+    }
+    .mt-scale-item::before { content: "·"; color: #6366f1; font-size: 20px; font-weight: 700; flex-shrink: 0; }
+    .mt-sub-title { font-size: 13px; font-weight: 700; color: #374151; margin: 24px 0 12px; }
+    .mt-expert-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; color: #6366f1;
+      background: #eef2ff; border-radius: 8px; padding: 10px 14px;
+    }
+    .mt-visual {
+      background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+      border-radius: 24px; padding: 48px 32px;
+      display: flex; flex-direction: column; gap: 12px;
+      min-height: 340px; justify-content: center;
+    }
+    .mt-visual-tag {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      color: #6366f1; margin-bottom: 8px;
+    }
+    .mt-visual-title { font-size: 20px; font-weight: 800; color: #1e1b4b; margin-bottom: 16px; }
+    .mt-sleep-row {
+      background: var(--white); border-radius: 12px; padding: 14px 18px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 13px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .mt-sleep-row-label { color: #6b7280; font-weight: 500; }
+    .mt-sleep-row-val { font-weight: 700; color: #1e1b4b; }
+    .mt-bar-wrap { margin-top: 4px; }
+    .mt-bar { height: 6px; background: #e0e7ff; border-radius: 99px; overflow: hidden; }
+    .mt-bar-fill { height: 100%; background: linear-gradient(90deg, #818cf8, #6366f1); border-radius: 99px; }
+
+    /* ── CTA ── */
+    .mt-cta {
+      background: linear-gradient(145deg, #0f172a 0%, #1e1b4b 100%);
+      color: var(--white); padding: 100px 32px; text-align: center;
+    }
+    .mt-cta h2 {
+      font-size: clamp(28px, 4vw, 48px); font-weight: 800;
+      letter-spacing: -1.5px; line-height: 1.15; margin-bottom: 20px;
+    }
+    .mt-cta-sub { font-size: 20px; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
+    .mt-cta .mt-store-btns { justify-content: center; margin-bottom: 0; }
+    .mt-disclaimer {
+      margin-top: 20px; font-size: 12px; color: rgba(255,255,255,0.3);
+      line-height: 1.7; margin-left: auto; margin-right: auto;
+    }
+
+    /* ── 반응형 ── */
+    @media (max-width: 860px) {
+      .section-features .prod-split { margin-bottom: 64px; }
+    }
+    @media (max-width: 600px) {
+      .mt-hero { padding: 80px 0; }
+      .mt-cta { padding: 72px 20px; }
+      .mt-store-btns { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav></nav>
+
+  <!-- 히어로 -->
+  <section class="mt-hero">
+    <div class="prod-hero-inner">
+      <div class="prod-hero-img">
+        <img src="../images/img_prod_mt.jpg" alt="마인드톤 플러스" />
+      </div>
+      <div>
+        <h1>Mindtone+<br /><span>디지털 사운드 웰니스</span></h1>
+          <p class="mt-hero-desc">일상 속 소음과 번잡함에서 벗어나 오직 나에게 집중할 수 있는 평화로운 시간. 마인드톤은 소리, 빛, 호흡 자극을 조화롭게 활용해 지친 심신의 안정을 돕는 맞춤형 데일리 웰니스 솔루션입니다.</p>
+          <div class="mt-store-btns">
+            <a href="#" class="mt-store-btn">
+              <img src="../images/Download_on_the_App_Store_Badge.svg" alt="Download on the App Store" />
+            </a>
+            <a href="#" class="mt-store-btn">
+              <img src="../images/GetItOnGooglePlay_Badge.svg" alt="Get it on Google Play" />
+            </a>
+          </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- Section 1. Core Value -->
+  <section class="section-core prod-section">
+    <div class="prod-wrap">
+      <div class="prod-header-center">
+        <div class="prod-eyebrow">Core Value</div>
+        <h2 class="prod-section-title">개인 맞춤형 감각 케어</h2>
+        <p class="prod-section-desc">현재 내 상태에 꼭 맞춘 청각 및 수면 라이프를 직접 설계할 수 있습니다.</br> 소리, 빛, 호흡의 3중 자극이 유기적으로 작용하여 깊은 휴식을 유도합니다.</p>
+      </div>
+      <div class="prod-grid-3">
+        <div class="prod-card icon">
+          <div class="prod-card-icon">🎵</div>
+          <h3>소리 조화</h3>
+          <p>귀의 긴장을 완화하는 젠틀한 주파수 웨이브로 이명의 불편함을 부드럽게 가려줍니다.</p>
+        </div>
+        <div class="prod-card icon">
+          <div class="prod-card-icon">💡</div>
+          <h3>빛 조화</h3>
+          <p>심리적 안정을 돕는 부드러운 컬러 테라피로 긴장된 마음을 차분하게 이완합니다.</p>
+        </div>
+        <div class="prod-card icon">
+          <div class="prod-card-icon">🫁</div>
+          <h3>호흡 조화</h3>
+          <p>신체 이완을 이끌어내는 가이드 호흡 및 진동 자극으로 깊은 수면을 준비합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2. Key Features -->
+  <section class="section-features prod-section">
+    <div class="prod-wrap">
+
+      <!-- Feature 01 -->
+      <div class="prod-split">
+        <div class="prod-split-text">
+          <div class="prod-eyebrow">Feature 01</div>
+          <h2>마인드봇(MindBot)<br />AI 분석 및 평가</h2>
+          <p>임상에서 검증된 자가진단 척도를 기반으로, 현재 나의 건강 상태를 객관적으로 평가하고 AI 분석 리포트를 제공합니다.</p>
+          <div class="mt-sub-title">활용 척도</div>
+          <div class="mt-scale-list">
+            <div class="mt-scale-item">이명 장애 지수 (THI) · 불면증 심각도 척도 (ISI)</div>
+            <div class="mt-scale-item">우울증 (PHQ-9) · 불안장애 (GAD-7)</div>
+          </div>
+          <div class="mt-sub-title">전문가 상담 연계</div>
+          <div class="mt-expert-tag">💬 AI 분석 결과 기반 원격 전문가 상담 연결</div>
+        </div>
+        <div class="mt-visual">
+          <div class="mt-visual-tag">MindBot AI Report</div>
+          <div class="mt-visual-title">나의 오늘 건강 리포트</div>
+          <div class="mt-sleep-row">
+            <span class="mt-sleep-row-label">이명 장애 지수 (THI)</span>
+            <span class="mt-sleep-row-val">경증 · 28점</span>
+          </div>
+          <div class="mt-bar-wrap">
+            <div class="mt-bar"><div class="mt-bar-fill" style="width:38%"></div></div>
+          </div>
+          <div class="mt-sleep-row">
+            <span class="mt-sleep-row-label">불면증 심각도 (ISI)</span>
+            <span class="mt-sleep-row-val">중등도 · 16점</span>
+          </div>
+          <div class="mt-bar-wrap">
+            <div class="mt-bar"><div class="mt-bar-fill" style="width:55%"></div></div>
+          </div>
+          <div class="mt-sleep-row">
+            <span class="mt-sleep-row-label">불안장애 (GAD-7)</span>
+            <span class="mt-sleep-row-val">경증 · 8점</span>
+          </div>
+          <div class="mt-bar-wrap">
+            <div class="mt-bar"><div class="mt-bar-fill" style="width:30%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 02 -->
+      <div class="prod-split reverse">
+        <div class="prod-split-text">
+          <div class="prod-eyebrow">Feature 02</div>
+          <h2>데이터 기반의<br />'수면 일지'</h2>
+          <p>체계적인 불면증 관리를 위해 매일의 수면 패턴을 기록하고 추적하는 데일리 리포트 기능입니다.</p>
+          <div class="mt-scale-list">
+            <div class="mt-scale-item">수면 품질 측정 — 매일 아침 직관적인 슬라이더로 수면의 질 기록</div>
+            <div class="mt-scale-item">방해 요인 분석 — 수면을 방해한 세부 요인을 태그로 선택·관리</div>
+            <div class="mt-scale-item">인사이트 도출 — 누적 데이터로 개인 수면 패턴 변화를 한눈에 파악</div>
+          </div>
+        </div>
+        <div class="mt-visual">
+          <div class="mt-visual-tag">수면 일지</div>
+          <div class="mt-visual-title">이번 주 수면 리포트</div>
+          <div class="mt-sleep-row">
+            <span class="mt-sleep-row-label">어제 수면 품질</span>
+            <span class="mt-sleep-row-val">72 / 100</span>
+          </div>
+          <div class="mt-bar-wrap">
+            <div class="mt-bar"><div class="mt-bar-fill" style="width:72%"></div></div>
+          </div>
+          <div class="mt-sleep-row">
+            <span class="mt-sleep-row-label">주간 평균</span>
+            <span class="mt-sleep-row-val">65 / 100</span>
+          </div>
+          <div class="mt-bar-wrap">
+            <div class="mt-bar"><div class="mt-bar-fill" style="width:65%"></div></div>
+          </div>
+          <div class="mt-sleep-row">
+            <span class="mt-sleep-row-label">주요 방해 요인</span>
+            <span class="mt-sleep-row-val">이명 · 스트레스</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="mt-cta">
+    <h2>더 깊은 휴식, 더 맑은 내일</h2>
+    <p class="mt-cta-sub">지금 바로 마인드톤+를 시작해 보세요.</p>
+    <div class="mt-store-btns">
+      <a href="#" class="mt-store-btn">
+        <img src="../images/Download_on_the_App_Store_Badge.svg" alt="Download on the App Store" />
+      </a>
+      <a href="#" class="mt-store-btn">
+        <img src="../images/GetItOnGooglePlay_Badge.svg" alt="Get it on Google Play" />
+      </a>
+    </div>
+    <p class="mt-disclaimer">⚠ 본 제품은 의료기기가 아니며, 심신 안정을 돕는 웰니스 제품입니다.</p>
+  </section>
+
+  <footer></footer>
+  <script src="../js/components.js"></script>
+</body>
+</html>
