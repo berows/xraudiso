@@ -73,31 +73,21 @@
             <img src="${base}images/audiso.svg" alt="Audiso 오디에스오" />
           </a>
           <p>(주)오디에스오<br />강원특별자치도 원주시 지정면 기업도시로 200,<br />의료기기종합지원센터 603호</p>
-          <p>contact@audiso.co.kr</p>
+          <p>audiso@naver.com</p>
         </div>
         <div class="footer-col">
           <h4>제품</h4>
           <ul>
-            <li><a href="${base}products/prod_withhear.html">마인드톤</a></li>
+            <li><a href="https://audiso.co.kr/hearingapp" target="_blank">모두의 보청기</a></li>
+            <li><a href="${base}products/prod_mindtone.html">마인드톤+</a></li>
+            <li><a href="${base}products/prod_withhear.html">청력검사VR</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>기술개발</h4>
+          <h4>기술데모</h4>
           <ul>
-            <li><a href="${base}index.html#services">디지털 트윈</a></li>
-            <li><a href="${base}index.html#services">AI 디지털 진단</a></li>
-            <li><a href="${base}index.html#services">XR 의료 시뮬레이터</a></li>
-            <li><a href="${base}index.html#services">모바일 헬스케어</a></li>
-            <li><a href="${base}index.html#services">임상 데이터 분석</a></li>
-            <li><a href="${base}index.html#services">원격 재활 솔루션</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>회사</h4>
-          <ul>
-            <li><a href="${base}index.html#demo">기술데모</a></li>
-            <li><a href="${base}index.html#partners">협력 기관</a></li>
-            <li><a href="${base}index.html#contact">문의</a></li>
+            <li><a href="${base}demo/ssnhl/SSNHL_predi_ver_3_0.html">돌발성난청 호전 예측 시뮬레이터</a></li>
+            <li><a href="${base}demo/earCheck/app.html">AI 귀 건강 분석</a></li>
           </ul>
         </div>
       </div>
