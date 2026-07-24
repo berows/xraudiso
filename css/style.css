@@ -324,7 +324,7 @@ nav {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 2;
+  z-index: 4;
 }
 
 .stats-inner {
@@ -336,9 +336,14 @@ nav {
 }
 
 .stat {
+  display: block;
   padding: 32px 0;
   text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
 }
+.stat:hover { opacity: 0.75; }
 
 .stat-number {
   font-size: 40px;

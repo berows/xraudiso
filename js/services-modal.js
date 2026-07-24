@@ -19,7 +19,7 @@
 
   function openModal(title, desc, videoSrc) {
     titleEl.textContent = title;
-    descEl.textContent  = desc;
+    descEl.innerHTML    = desc;
 
     // Swap video source only if changed
     if (videoSrc && videoEl.getAttribute('src') !== videoSrc) {
