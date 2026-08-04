@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>청력검사 VR 시뮬레이터 — Audiso</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="css/products.css" />
+  <style>
+    /* ── 히어로 ── */
+    .wh-hero {
+      background: linear-gradient(110deg, #051f80 0%, #3737a7 50%, #b2bed6 100%);
+      color: var(--white);
+      padding: 80px 20px;
+    }
+    .wh-hero .prod-hero-inner { align-items: center; }
+    .wh-hero .prod-hero-img {
+      border-radius: 20px;
+      box-shadow: 0 24px 64px rgba(0,10,30,0.4), 0 8px 24px rgba(0,10,30,0.25);
+    }
+    .wh-hero h1 {
+      font-size: clamp(30px, 3.5vw, 46px); font-weight: 800;
+      letter-spacing: -1px; line-height: 1.2; margin-bottom: 10px;
+    }
+    .wh-hero-desc {
+      font-size: 16px; color: rgba(255,255,255,0.65);
+      line-height: 1.85; margin-bottom: 24px;
+    }
+    .wh-made-for {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .wh-made-for span {
+      font-size: 12px; color: rgba(255,255,255,0.45); font-weight: 500;
+    }
+    .wh-made-for img { height: 28px; display: block; }
+
+    /* ── 연구 배경 ── */
+    .section-statement { background: #fafafa; }
+
+    /* ── 교차 섹션 ── */
+    .split-section { border-top: 1px solid var(--gray-200); }
+
+    /* ── 훈련 모드 ── */
+    .section-modes { background: #38383d; }
+    .section-modes .prod-grid-3 { align-items: stretch; }
+    .section-modes .prod-dark-card {
+      border-radius: 20px; padding: 24px;
+      display: flex; flex-direction: column;
+      align-items: center; text-align: center;
+    }
+    .section-modes .prod-dark-card .mode-img {
+      width: 100%; aspect-ratio: 1 / 1;
+      border-radius: 50%; object-fit: cover;
+      margin-bottom: 20px;
+    }
+
+    /* ── 가치 그리드 ── */
+    .section-values { background: #fafafa; }
+    .video-card-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 32px; margin-top: 48px;
+    }
+    .video-card video {
+      width: 100%; border-radius: 16px; display: block;
+    }
+    .video-card-label {
+      font-size: 15px; font-weight: 700; color: var(--black);
+      margin-top: 14px; text-align: center;
+    }
+    @media (max-width: 700px) {
+      .video-card-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── CTA ── */
+    .wh-cta {
+      background: linear-gradient(145deg, #0b193c 0%, #2e23cb 100%);
+      color: var(--white); padding: 100px 32px; text-align: center;
+    }
+    .wh-cta h2 {
+      font-size: clamp(28px, 4vw, 48px); font-weight: 800;
+      letter-spacing: -1.5px; line-height: 1.15; margin-bottom: 32px;
+    }
+
+    /* ── 반응형 ── */
+    @media (max-width: 600px) {
+      .wh-hero { padding: 80px 0; }
+      .wh-cta { padding: 72px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav></nav>
+
+  <!-- 히어로 -->
+  <section class="wh-hero">
+    <div class="prod-hero-inner">
+      <div class="prod-hero-img">
+        <img src="../images/prod_ptavr_cover.png" alt="청력검사 VR 시뮬레이터" />
+      </div>
+      <div>
+        <h1>가상현실 기반<br />청력검사 훈련 시뮬레이터</h1>
+        <p class="wh-hero-desc">Puretone Audiometry VR은 임상 청력검사 실습 교육을 위한 VR 훈련 시스템입니다. 
+          실제 난청환자 케이스에 기반한 다양한 임상 시나리오를 디지털트윈 환경에서 반복 경험 할 수 있습니다.</p>
+        <div class="wh-made-for">
+          <!-- <span>Made for</span> -->
+          <img src="../images/MQLogo.png" alt="Meta Quest" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 개발 배경 -->
+  <section class="section-statement prod-section">
+    <div class="prod-wrap">
+      <div class="prod-header-center">
+        <h2 class="prod-section-title">임상 실습 환경의 인프라 제약을 VR로 극복</h2>
+        <p class="prod-section-desc">임상에서 실시하는 표준 청력검사는 숙련된 청각사와 고가 장비가 필수입니다.
+          <br />현실에서는 환자를 두고 복잡한 기기 운용과 검사 방법을 반복 훈련 하는 것은 불가능합니다.
+          <br />전문가 양성 과정에서 발생하는 현실적인 제약을 디지털트윈 기술로 해결합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 교차 섹션 1 -->
+  <section class="split-section prod-section">
+    <div class="prod-wrap">
+      <div class="prod-split">
+        <div class="prod-split-text">
+          <h2>실제 임상환경을 VR로 재현</h2>
+          <p>독립형 VR 기기에서 실시간으로 물리기반 렌더링(PBR) 가능한 최적화 기술로 실제 청력검사실 환경을 충실하게 재현해, 시간과 장소의 제약 없이 몰입형 훈련이 가능합니다.</p>
+          <ul class="prod-list">
+            <li>72fps 이상의 안정적인 동작 성능 보장</li>
+            <li>저사양 무선 독립형 HMD 기기 지원 (메타퀘스트2 이상)</li>
+            <li>리얼타임 렌더링 방식의 훈련 세션 구현</li>
+          </ul>
+        </div>
+        <div class="prod-split-img">
+          <video src="../video/vid_env.mp4" autoplay loop muted playsinline style="width:100%; border-radius:16px; display:block;"></video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 교차 섹션 2 -->
+  <section class="split-section prod-section">
+    <div class="prod-wrap">
+      <div class="prod-split reverse">
+        <div class="prod-split-text">
+          <h2>난청환자 데이터 기반 AI 아바타</h2>
+          <p>실제 난청환자 데이터베이스로 생성한 디지털트윈 아바타와 함께 훈련합니다. 희귀 환자 케이스 시나리오와 다양한 임상 변수를 자유롭게 설정할 수 있습니다.</p>
+          <ul class="prod-list">
+            <li>실제 임상 데이터 기반 환자 아바타 생성</li>
+            <li>다양한 난청 유형 및 희귀 중증도 시나리오 반복 실습</li>
+            <li>직관적인 VR 조작으로 임상에 근접한 대응 속도로 훈련 가능</li>
+          </ul>
+        </div>
+        <div class="prod-split-img">
+          <video src="../video/vid_ptavr.mp4" autoplay loop muted playsinline style="width:100%; border-radius:16px; display:block;"></video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 훈련 모드 -->
+  <section class="section-modes prod-dark prod-section">
+    <div class="prod-wrap">
+      <div class="prod-header-center">
+        <h2 class="prod-section-title">사용자 수준별 맞춤 훈련 모드</h2>
+      </div>
+      <div class="prod-grid-3">
+        <div class="prod-dark-card">
+          <img class="mode-img" src="../images/prod_ptavr_04.png" alt="튜토리얼 모드" />
+          <h3>튜토리얼 모드</h3>
+          <p>VR에 익숙하지 않은 실습자를 위한 조작법 설명 및 단계별 절차적 가이드를 제공 합니다. VR 기기 온보딩과 친숙화 부담을 줄입니다.</p>
+        </div>
+        <div class="prod-dark-card">
+          <img class="mode-img" src="../images/prod_ptavr_01.png" alt="자유 실습 모드" />
+          <h3>자유 실습 모드</h3>
+          <p>실습자가 설정한 환경 옵션으로 자유롭게 검사와 기기조작을 반복 훈련 할 수 있습니다. VR 훈련 효과를 극대화 시켜주는 모드입니다.</p>
+        </div>
+        <div class="prod-dark-card">
+          <img class="mode-img" src="../images/prod_ptavr_03.png" alt="평가 모드" />
+          <h3>평가 모드</h3>
+          <p>검사 훈련 성과 출력 데이터로 훈련생의 역량을 측정합니다. 표준 코스로 교육자 평가가 가능합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 가치 그리드 -->
+  <section class="section-values prod-section">
+    <div class="prod-wrap">
+      <div class="prod-header-center">
+        <h2 class="prod-section-title">가상현실 - 디지털트윈 기반의 임상 실습 교육</h2>
+      </div>
+      <div class="prod-grid-3">
+        <div class="prod-card"><h4>휴대성</h4><p>무선 독립형 HMD로 검사실 없이도 어디서든 훈련 가능합니다.</p></div>
+        <div class="prod-card"><h4>효율성</h4><p>반복 훈련과 즉각 피드백으로 전통적인 도제식 교육 대비 학습 속도를 높입니다.</p></div>
+        <div class="prod-card"><h4>접근성</h4><p>희귀 케이스와 다양한 장비 유형을 콘텐츠로 제공해 현장 경험의 편차를 해소합니다.</p></div>
+        <div class="prod-card"><h4>안전성</h4><p>실제 환자 없이도 고위험 상황을 안전하게 경험하고 대응 능력을 기릅니다.</p></div>
+        <div class="prod-card"><h4>데이터</h4><p>훈련 기록과 성과 지표를 축적해 교육 프로그램의 품질을 지속적으로 개선합니다.</p></div>
+        <div class="prod-card"><h4>확장성</h4><p>플랫폼을 유지하며 콘텐츠의 교체 만으로 다양한 의료분야 교육에 유연하게 대응합니다.</p></div>
+      </div>
+      <div class="video-card-grid">
+        <div class="video-card">
+          <video src="../video/vid_bppv.mp4" autoplay loop muted playsinline></video>
+          <p class="video-card-label">이석증 진단 치료 교육VR</p>
+        </div>
+        <div class="video-card">
+          <video src="../video/vid_tbss.mp4" autoplay loop muted playsinline></video>
+          <p class="video-card-label">측두골 수술 시뮬레이터</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="wh-cta">
+    <h2>데모 및 협업</h2>
+    <a href="../index.html#contact" class="btn-accent">도입문의</a>
+  </section>
+
+  <footer></footer>
+  <script src="../js/components.js"></script>
+</body>
+</html>

@@ -80,7 +80,7 @@
           <ul>
             <li><a href="https://audiso.co.kr/hearingapp" target="_blank">모두의 보청기</a></li>
             <li><a href="${base}products/prod_mindtone.html">마인드톤+</a></li>
-            <li><a href="${base}products/prod_withhear.html">청력검사VR</a></li>
+            <li><a href="${base}products/prod_ptavr.html">청력검사VR</a></li>
           </ul>
         </div>
         <div class="footer-col">

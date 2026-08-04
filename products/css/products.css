@@ -31,7 +31,7 @@
 }
 .prod-section-desc { font-size: 16px; color: var(--gray-500); line-height: 1.8; }
 
-.prod-header-center { text-align: center; margin-bottom: 56px; }
+.prod-header-center { text-align: center;}
 .prod-header-center .prod-section-title { margin-bottom: 14px; }
 .prod-header-center .prod-section-desc { max-width: 800px; margin: 0 auto; }
 
