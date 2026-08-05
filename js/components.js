@@ -73,7 +73,7 @@
             <img src="${base}images/audiso.svg" alt="Audiso 오디에스오" />
           </a>
           <p>(주)오디에스오<br />강원특별자치도 원주시 지정면 기업도시로 200,<br />의료기기종합지원센터 603호</p>
-          <p>audiso@naver.com</p>
+          <p><a href="mailto:audiso@naver.com">audiso@naver.com</a></p>
         </div>
         <div class="footer-col">
           <h4>제품</h4>
@@ -88,12 +88,14 @@
           <ul>
             <li><a href="${base}demo/ssnhl/SSNHL_predi_ver_3_0.html">돌발성난청 호전 예측 시뮬레이터</a></li>
             <li><a href="${base}demo/earCheck/app.html">AI 귀 건강 분석</a></li>
+            <li><a href="https://drive.google.com/drive/folders/1lzPKTtVgOaqA085jJSXPqi1IyCFQUsg-?usp=drive_link" target="_blank" rel="noopener">
+            WithHear Press Kit</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
         <p>©2026 Audiso, Inc. All rights reserved.</p>
-        <p>주식회사 오디에스오</p>
+        <p><a href="https://audiso.co.kr/" target="_blank" rel="noopener">주식회사 오디에스오</a></p>
       </div>`;
   }
 })();
