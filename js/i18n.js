@@ -159,7 +159,7 @@
 
       'hero.tag': 'AI · XR · Digital Twin',
       'hero.title': 'Leading the Digital Healthcare<br />Revolution in Audiology.',
-      'hero.desc': 'Audiso is transforming diagnosis, treatment, and education in audiology through AI and digital twin technology.',
+      'hero.desc': 'Audiso is transforming diagnosis, treatment, and education in audiology through AI and Digital twin technology.',
       'hero.btn1': 'Explore Technology',
       'hero.btn2': 'About WithHear™ →',
 
@@ -217,7 +217,7 @@
 
       'partners.title': 'Partners',
 
-      'cta.title': '"I\'d love to share our vision for the future of medicine."',
+      'cta.title': '"Explore our vision for the future of healthcare."',
       'cta.desc': 'Hospitals, research institutes, and companies are all welcome.<br />Let\'s share Audiso\'s technology and vision.',
       'cta.btn': 'Contact Us',
 
