@@ -33,7 +33,7 @@
 
 .prod-header-center { text-align: center;}
 .prod-header-center .prod-section-title { margin-bottom: 14px; }
-.prod-header-center .prod-section-desc { max-width: 800px; margin: 0 auto 14 auto; }
+.prod-header-center .prod-section-desc { max-width: 800px; margin: 0 auto 14px auto; }
 
 /* 2단 분할 레이아웃 */
 .prod-split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
