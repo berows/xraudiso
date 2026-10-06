@@ -29,7 +29,7 @@
   font-size: clamp(26px, 3vw, 40px); font-weight: 800;
   letter-spacing: -1px; line-height: 1.15; margin-bottom: 14px;
 }
-.prod-section-desc { font-size: 16px; color: var(--gray-500); line-height: 1.8; }
+.prod-section-desc { font-size: 16px; color: var(--gray-500); line-height: 1.8; margin-bottom: 14px;}
 
 .prod-header-center { text-align: center;}
 .prod-header-center .prod-section-title { margin-bottom: 14px; }
