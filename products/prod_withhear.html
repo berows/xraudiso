@@ -117,11 +117,13 @@
       align-items: center;
       justify-content: center;
       padding: 12px;
-      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
     }
     .wh-circle-btn:hover {
       background: var(--wh-red);
       transform: scale(1.05);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.25);
     }
 
     /* ── 소개 섹션 ── */
@@ -236,11 +238,13 @@
       .wh-title-wrap { margin-bottom: 40px; }
       .wh-spec-layout { grid-template-columns: 1fr; }
       .wh-inno-split { grid-template-columns: 1fr; }
+      .wh-inno-img { margin: 0 auto; }
     }
     @media (max-width: 700px) {
       .wh-site-grid { grid-template-columns: 1fr; }
       .wh-self-grid { grid-template-columns: 1fr; }
       .wh-global-grid { grid-template-columns: 1fr; }
+      .wh-global-img { width: 100%; height: auto; }
     }
     @media (max-width: 600px) {
       .wh-hero { padding-bottom: 56px; }
@@ -252,6 +256,10 @@
       .wh-inno-right .wh-circle-btn { width: 120px; height: 120px; font-size: 15px; }
       .wh-hero-actions,
       .wh-inno-actions { justify-content: center; }
+      .wh-fea-row { flex-direction: column; align-items: center; }
+      .wh-fea-img { max-width: 100%; }
+      .wh-fea-body h3 { font-size: 18px; }
+      .wh-fea-body ul li { font-size: 16px; }
     }
   </style>
 </head>
