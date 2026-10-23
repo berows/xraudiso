@@ -127,20 +127,24 @@ nav {
 }
 
 .lang-btn {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.5px;
   color: var(--gray-500);
   background: none;
   border: none;
-  border-bottom: 1px solid transparent;
   cursor: pointer;
-  padding: 2px 1px;
-  transition: color 0.2s, border-color 0.2s;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
   line-height: 1;
 }
-.lang-btn:hover { color: var(--black); border-bottom-color: var(--gray-400); }
-.lang-btn.active { color: var(--black); border-bottom-color: var(--black); }
+.lang-btn:hover { color: var(--black); background: var(--gray-100); }
+.lang-btn.active { color: var(--black); background: var(--gray-100); }
 
 /* ── 햄버거 버튼 ── */
 .nav-hamburger {
