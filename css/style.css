@@ -12,6 +12,20 @@
   --accent-dark: #C99200;
   --radius: 12px;
   --font: 'Pretendard', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* ── WithHear 브랜드 컬러 ── */
+  --wh-dark:       #4D4D4D;
+  --wh-grey-brown: #777164;
+  --wh-grey:       #999999;
+  --wh-grey-light: #D9D9D9;
+  --wh-grey-bg:    #E1DCD3;
+  --wh-white:      #FFFBFB;
+  --wh-red:        #D42A2A;
+  --wh-bg:         #F3EDE3;
+  --wh-yellow:     #FFCC02;
+  --wh-blue:       #2C6FFF;
+  --wh-green:      #00B61B;
+  --wh-tang:       #CD7926;
 }
 
 html { scroll-behavior: smooth; }
