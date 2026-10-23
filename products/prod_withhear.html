@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WithHear™ — Audiso</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="css/products.css" />
+  <style>
+    /* ── 히어로 전체 ── */
+    .wh-hero {
+      background: #fff;
+      padding: 0 0 80px;
+    }
+
+    /* ── 타이틀 영역 ── */
+    .wh-title-wrap {
+      text-align: center;
+      padding: 56px 32px 40px;
+      border-bottom: 1px solid var(--gray-200);
+      margin-bottom: 64px;
+    }
+    .wh-title-en {
+      font-size: clamp(72px, 12vw, 160px);
+      font-weight: 900;
+      letter-spacing: -4px;
+      line-height: 1;
+      color: #2d2d2d;
+      margin: 0;
+    }
+    .wh-title-ko {
+      font-size: clamp(20px, 3vw, 36px);
+      font-weight: 600;
+      color: var(--gray-400);
+      letter-spacing: 8px;
+      margin: 8px 0 0;
+    }
+
+    /* ── 2단 분할 ── */
+    .wh-hero-body {
+      align-items: center;
+    }
+
+    /* ── 슬라이더 ── */
+    .wh-slider-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+    .wh-slider {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+    .wh-slide {
+      width: 100%;
+      display: none;
+    }
+    .wh-slide.active {
+      display: block;
+    }
+    .wh-dots {
+      display: flex;
+      gap: 10px;
+    }
+    .wh-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid #2d2d2d;
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s;
+    }
+    .wh-dot.active {
+      background: #2d2d2d;
+    }
+
+    /* ── 텍스트 영역 ── */
+    .wh-hero-text h2 {
+      font-size: clamp(22px, 2.5vw, 34px);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.25;
+      color: #1a1a1a;
+      margin-bottom: 20px;
+    }
+    .wh-hero-text p {
+      font-size: 16px;
+      color: var(--gray-500);
+      line-height: 1.85;
+      margin-bottom: 40px;
+    }
+
+    /* ── 원형 버튼 ── */
+    .wh-hero-actions {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .wh-circle-btn {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: #f5c400;
+      color: #1a1a1a;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.35;
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .wh-circle-btn:hover {
+      background: #e0b300;
+      transform: scale(1.05);
+    }
+
+    /* ── 반응형 ── */
+    @media (max-width: 900px) {
+      .wh-title-en { letter-spacing: -2px; }
+      .wh-title-wrap { margin-bottom: 40px; }
+    }
+    @media (max-width: 600px) {
+      .wh-hero { padding-bottom: 56px; }
+      .wh-title-wrap { padding: 40px 20px 28px; margin-bottom: 32px; }
+      .wh-circle-btn { width: 96px; height: 96px; font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav></nav>
+
+  <!-- 히어로 -->
+  <section class="wh-hero">
+
+    <!-- 타이틀 -->
+    <div class="wh-title-wrap">
+      <h1 class="wh-title-en">WithHear</h1>
+      <p class="wh-title-ko" data-i18n="wh.title.ko">위드히어</p>
+    </div>
+
+    <!-- 슬라이더 + 텍스트 -->
+    <div class="wh-hero-body prod-hero-inner">
+
+      <!-- 슬라이더 -->
+      <div class="wh-slider-wrap">
+        <div class="wh-slider">
+          <img class="wh-slide active" src="../images/wh_img_slide01.png" alt="WithHear 슬라이드 1" />
+          <img class="wh-slide" src="../images/wh_img_slide02.png" alt="WithHear 슬라이드 2" />
+          <img class="wh-slide" src="../images/wh_img_slide03.png" alt="WithHear 슬라이드 3" />
+        </div>
+        <div class="wh-dots">
+          <button class="wh-dot active" data-idx="0" aria-label="슬라이드 1"></button>
+          <button class="wh-dot" data-idx="1" aria-label="슬라이드 2"></button>
+          <button class="wh-dot" data-idx="2" aria-label="슬라이드 3"></button>
+        </div>
+      </div>
+
+      <!-- 텍스트 -->
+      <div class="wh-hero-text">
+        <h2 data-i18n="wh.hero.title">자동청력검사 키오스크 솔루션</h2>
+        <p data-i18n="wh.hero.desc">WithHear™는 전문 인력 없이도 정밀한 청력검사가 가능합니다. AI 통합 청각 검사를 제공하여 다양한 공공 및 의료 현장에서 효율적인 무인 선별진단 운영이 가능합니다.</p>
+        <div class="wh-hero-actions">
+          <a href="https://audiso.co.kr/withhear" target="_blank" class="wh-circle-btn" data-i18n="wh.hero.btn1">카탈로그 다운로드</a>
+          <a href="mailto:audiso@naver.com" class="wh-circle-btn" data-i18n="wh.hero.btn2">견적 문의</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer></footer>
+
+  <script>
+    // 슬라이더
+    (function () {
+      const slides = document.querySelectorAll('.wh-slide');
+      const dots   = document.querySelectorAll('.wh-dot');
+      let current  = 0;
+      let timer;
+
+      function goTo(idx) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = idx;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+
+      function next() { goTo((current + 1) % slides.length); }
+
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          clearInterval(timer);
+          goTo(+dot.dataset.idx);
+          timer = setInterval(next, 3500);
+        });
+      });
+
+      timer = setInterval(next, 3500);
+    })();
+  </script>
+  <script src="../js/i18n.js"></script>
+  <script src="../js/components.js"></script>
+</body>
+</html>

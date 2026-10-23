@@ -73,6 +73,12 @@
 
       'modal.close': '닫기',
 
+      'wh.title.ko': '위드히어',
+      'wh.hero.title': '자동청력검사 키오스크 솔루션',
+      'wh.hero.desc': 'WithHear™는 전문 인력 없이도 정밀한 청력검사가 가능합니다. AI 통합 청각 검사를 제공하여 다양한 공공 및 의료 현장에서 효율적인 무인 선별진단 운영이 가능합니다.',
+      'wh.hero.btn1': '카탈로그 다운로드',
+      'wh.hero.btn2': '견적 문의',
+
       'footer.brand.info': '(주)오디에스오<br />강원특별자치도 원주시 지정면 기업도시로 200,<br />의료기기종합지원센터 603호',
       'footer.col1.title': '제품',
       'footer.col1.link1': '모두의 보청기',
@@ -223,6 +229,12 @@
 
       'modal.close': 'Close',
 
+      'wh.title.ko': 'WithHear',
+      'wh.hero.title': 'Automated Hearing Screening Kiosk Solution',
+      'wh.hero.desc': 'WithHear™ enables precise hearing screening without specialized personnel. By providing AI-integrated auditory testing, it supports efficient unattended screening operations across diverse public and medical environments.',
+      'wh.hero.btn1': 'Catalog Download',
+      'wh.hero.btn2': 'Request a Quote',
+
       'footer.brand.info': 'Audiso, Inc.<br />200 Gipdomsi-ro, Jijung-myeon, Wonju-si,<br />Gangwon State, South Korea · Medical Device Support Center #603',
       'footer.col1.title': 'Products',
       'footer.col1.link1': 'ModuHear',
@@ -372,6 +384,12 @@
       'cta.btn': 'お問い合わせ',
 
       'modal.close': '閉じる',
+
+      'wh.title.ko': 'ウィズヒア',
+      'wh.hero.title': '自動聴力検査キオスクソリューション',
+      'wh.hero.desc': 'WithHear™は専門人材なしでも精密な聴力検査が可能です。AI統合聴覚検査を提供し、様々な公共・医療現場で効率的な無人スクリーニング運営を実現します。',
+      'wh.hero.btn1': 'カタログダウンロード',
+      'wh.hero.btn2': '見積もり依頼',
 
       'footer.brand.info': 'オーディエスオ株式会社<br />韓国 江原特別自治道 原州市<br />医療機器総合支援センター 603号',
       'footer.col1.title': '製品',
