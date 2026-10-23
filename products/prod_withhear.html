@@ -313,7 +313,7 @@
       <p class="wh-intro-desc" data-i18n-html="wh.intro.desc">복잡한 설명 없이, 빠르고 정확하게 귀 건강을 확인하세요.<br>WithHear™가 청력검사의 새로운 일상으로 다가갑니다.</p>
       <div class="wh-intro-video-wrap" id="wh-video-wrap">
         <video id="wh-video" preload="metadata" playsinline>
-          <source src="../video/audisoKiosk_en_260524_720p.mp4" type="video/mp4" />
+          <source src="../video/audisoKiosk_en_260524_480p.mp4" type="video/mp4" />
         </video>
         <div class="wh-video-controls">
           <button class="wh-video-ctrl-btn" id="wh-mute-btn" aria-label="음소거">
@@ -601,7 +601,6 @@
         if (!video.paused) { video.pause(); }
       });
 
-      // 뮤트 토글
       const muteBtn   = document.getElementById('wh-mute-btn');
       const iconSound = document.getElementById('wh-icon-sound');
       const iconMute  = document.getElementById('wh-icon-mute');
@@ -613,7 +612,6 @@
         iconMute.style.display  = video.muted ? ''      : 'none';
       });
 
-      // 전체화면
       const fsBtn = document.getElementById('wh-fs-btn');
       fsBtn.addEventListener('click', function (e) {
         e.stopPropagation();
