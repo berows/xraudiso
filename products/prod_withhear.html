@@ -16,10 +16,10 @@
     /* ── 타이틀 영역 ── */
     .wh-title-wrap {
       text-align: center;
-      padding: 40px 0px 20px;
+      padding: 40px 20px 0px ;
     }
     .wh-title-img {
-      width: 1015px;
+      width: 900px;
       max-width: 100%;
       height: auto;
       display: block;
@@ -29,6 +29,7 @@
     /* ── 2단 분할 ── */
     .wh-hero-body {
       align-items: center;
+      gap: 0;
     }
 
     /* ── 슬라이더 ── */
@@ -55,13 +56,14 @@
     .wh-dots {
       display: flex;
       gap: 46px;
+      margin-bottom: 20px;
     }
     .wh-dot {
       width: 23px;
       height: 23px;
       border-radius: 50%;
-      border: 2px solid #2d2d2d;
-      background: transparent;
+      border: 1px;
+      background: var(--wh-grey-light);
       cursor: pointer;
       padding: 0;
       transition: background 0.2s;
@@ -72,18 +74,23 @@
 
     /* ── 텍스트 영역 ── */
     .wh-hero-text h2 {
-      font-size: clamp(22px, 2.5vw, 34px);
-      font-weight: 800;
-      letter-spacing: -0.5px;
+      font-size: 40px;
+      font-weight: bold;
       line-height: 1.25;
-      color: #1a1a1a;
+      color: var(--wh-dark);
       margin-bottom: 20px;
     }
     .wh-hero-text p {
-      font-size: 16px;
-      color: var(--gray-500);
-      line-height: 1.85;
-      margin-bottom: 40px;
+      font-size: 22px;
+      color: var(--wh-dark);
+      line-height: 1.5;
+      margin-bottom: 80px;
+    }
+
+    /* ── 텍스트 컬럼 ── */
+    .wh-hero-text {
+      display: flex;
+      flex-direction: column;
     }
 
     /* ── 원형 버튼 ── */
@@ -91,15 +98,17 @@
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
+      justify-content: flex-end;
+      margin-top: auto;
     }
     .wh-circle-btn {
-      width: 110px;
-      height: 110px;
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
-      background: #f5c400;
-      color: #1a1a1a;
-      font-size: 14px;
-      font-weight: 700;
+      background: var(--wh-yellow); 
+      color: var(--wh-dark);
+      font-size: 20px;
+      font-weight: bold;
       line-height: 1.35;
       text-align: center;
       text-decoration: none;
@@ -110,7 +119,8 @@
       transition: background 0.2s, transform 0.2s;
     }
     .wh-circle-btn:hover {
-      background: #e0b300;
+      /* background: var(--wh-tang); */
+      background: var(--wh-red);
       transform: scale(1.05);
     }
 
