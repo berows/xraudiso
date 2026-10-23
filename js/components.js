@@ -18,7 +18,7 @@
         </ul>
         <div class="nav-right">
           <div class="lang-switcher">
-            <button class="lang-btn" data-lang="ko">KO</button>
+            <button class="lang-btn" data-lang="ko">KR</button>
             <button class="lang-btn" data-lang="en">EN</button>
             <button class="lang-btn" data-lang="ja">JA</button>
           </div>
