@@ -302,8 +302,8 @@
       'wh.title.ko': 'WithHear',
       'wh.hero.title': 'Automated Hearing Screening Kiosk Solution',
       'wh.hero.desc': 'WithHear™ enables precise hearing screening without specialized personnel. By providing AI-integrated auditory testing, it supports efficient unattended screening operations across diverse public and medical environments.',
-      'wh.hero.btn1': 'Catalog Download',
-      'wh.hero.btn2': 'Request a Quote',
+      'wh.hero.btn1': 'Download<br>Catalog',
+      'wh.hero.btn2': 'Request<br>Quote',
       'wh.intro.title': 'A New Standard for Accurate and Simple Hearing Screening',
       'wh.intro.desc': 'Check your hearing health quickly and accurately, without complicated instructions.<br>WithHear™ is making hearing tests a natural part of everyday life.',
 
@@ -372,8 +372,8 @@
       'wh.inno.li1': 'Sole-Source Contract Authority: eligible for direct contracts with public institutions for 3 years from designation, with no limit on contract value.',
       'wh.inno.li2': 'Pilot Purchase Program: products are purchased using PPS budget and supplied to public institutions for testing.',
       'wh.inno.desc': 'WithHear™ utilizes an AI algorithm based on reference data for Korean hearing standards, ensuring high reliability in testing. It has been highly recognized for both its public value and technological innovation, as it effectively addresses gaps in healthcare—specifically in public health settings such as community health centers, local government welfare facilities, military units, and schools—where professional medical staff or specialized equipment may be lacking.',
-      'wh.inno.btn1': 'Catalog Download',
-      'wh.inno.btn2': 'Request a Quote',
+      'wh.inno.btn1': 'Download<br>Catalog',
+      'wh.inno.btn2': 'Request<br>Quote',
 
       'footer.brand.info': 'Audiso, Inc.<br />200 Gipdomsi-ro, Jijung-myeon, Wonju-si,<br />Gangwon State, South Korea · Medical Device Support Center #603',
       'footer.col1.title': 'Products',
