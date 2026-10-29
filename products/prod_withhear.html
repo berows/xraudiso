@@ -624,11 +624,17 @@
   <script src="../js/leaflet/leaflet.min.js"></script>
   <script>
     (function () {
-      L.Icon.Default.imagePath = '../js/leaflet/';
+      delete L.Icon.Default.prototype._getIconUrl;
+      L.Icon.Default.mergeOptions({
+        iconUrl: '../js/leaflet/images/marker-icon.png',
+        iconRetinaUrl: '../js/leaflet/images/marker-icon-2x.png',
+        shadowUrl: '../js/leaflet/images/marker-shadow.png'
+      });
       var map = L.map('wh-where-map').setView([37.37, 127.55], 9);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 18
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
       }).addTo(map);
       var pins = [
         { lat: 37.4594, lng: 127.9759, label: '강원 횡성군 횡성읍 횡성로 393' },
