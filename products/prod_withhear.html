@@ -6,6 +6,7 @@
   <title>WithHear™ — Audiso</title>
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="css/products.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
     /* ── 히어로 전체 ── */
     .wh-hero {
@@ -493,14 +494,7 @@
           <h2 class="wh-sec-heading" data-i18n="wh.where.title">체험할 수 있는 곳</h2>
         </div>
       </div>
-      <iframe
-        class="wh-where-map"
-        src="https://maps.google.com/maps?q=원주시청&output=embed&hl=ko"
-        allowfullscreen
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title="WithHear 체험 위치 지도"
-      ></iframe>
+      <div id="wh-where-map" class="wh-where-map"></div>
     </div>
   </section>
 
@@ -627,5 +621,26 @@
   </script>
   <script src="../js/i18n.js"></script>
   <script src="../js/components.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    (function () {
+      var map = L.map('wh-where-map').setView([37.37, 127.55], 9);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 18
+      }).addTo(map);
+      var pins = [
+        { lat: 37.4594, lng: 127.9759, label: '강원 횡성군 횡성읍 횡성로 393' },
+        { lat: 37.3721, lng: 127.9582, label: '강원 원주시 태장동 729-3' },
+        { lat: 37.3526, lng: 127.9343, label: '강원 원주시 단계동 909' },
+        { lat: 37.2801, lng: 127.9015, label: '강원 원주시 흥업면 매지리 1496' },
+        { lat: 37.3757, lng: 127.8847, label: '강원 원주시 지정면 기업도시로 200' },
+        { lat: 37.4137, lng: 127.0998, label: '경기 성남시 수정구 대왕판교로 815' }
+      ];
+      pins.forEach(function (p) {
+        L.marker([p.lat, p.lng]).addTo(map).bindPopup(p.label);
+      });
+    })();
+  </script>
 </body>
 </html>
