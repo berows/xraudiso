@@ -375,7 +375,7 @@
       'wh.inno.btn1': 'Download<br>Catalog',
       'wh.inno.btn2': 'Request<br>Quote',
 
-      'footer.brand.info': 'Audiso Co., Ltd.<br />200 Gipdomsi-ro, Jijung-myeon, Wonju-si,<br />Gangwon State, South Korea · Medical Device Support Center #603',
+      'footer.brand.info': 'Audiso Co., Ltd.<br />200 Gieopdosi-ro, Jijung-myeon, Wonju-si,<br />Gangwon State, South Korea · Medical Device Support Center #603',
       'footer.col1.title': 'Products',
       'footer.col1.link1': 'ModuHear',
       'footer.col1.link2': 'MindTone+',
