@@ -76,7 +76,7 @@
       'wh.title.ko': '위드히어',
       'wh.hero.title': '자동청력검사 키오스크 솔루션',
       'wh.hero.desc': 'WithHear™는 전문 인력 없이도 정밀한 청력검사가 가능합니다. AI 통합 청각 검사를 제공하여 다양한 공공 및 의료 현장에서 효율적인 무인 선별진단 운영이 가능합니다.',
-      'wh.hero.btn1': '카탈로<br>다운로드',
+      'wh.hero.btn1': '카탈로그<br>다운로드',
       'wh.hero.btn2': '견적<br>문의',
       'wh.intro.title': '정확하고 간편한 청력 검진의 새로운 기준',
       'wh.intro.desc': '복잡한 설명 없이, 빠르고 정확하게 귀 건강을 확인하세요.<br>WithHear™가 청력검사의 새로운 일상으로 다가갑니다.',
@@ -383,7 +383,7 @@
       'footer.col2.title': 'Tech Demo',
       'footer.col2.link1': 'Sudden Hearing Loss Simulator',
       'footer.col2.link2': 'AI Ear Health Analysis',
-      'footer.company.link': 'Audiso Corporation',
+      'footer.company.link': 'Audiso KOLAS',
 
       'mt.hero.h1': 'Mindtone+<br /><span>Digital Sound Wellness</span>',
       'mt.hero.desc': 'Escape the noise and complexity of everyday life and find a peaceful moment focused entirely on yourself. MindTone is a personalized daily wellness solution that harmoniously combines sound, light, and breathing to help restore calm to a tired mind and body.',
@@ -609,7 +609,7 @@
       'footer.col2.title': '技術デモ',
       'footer.col2.link1': '突発性難聴回復予測シミュレーター',
       'footer.col2.link2': 'AI耳健康分析',
-      'footer.company.link': 'オーディエスオ株式会社',
+      'footer.company.link': 'オーディエスオ株式会社へ',
 
       'mt.hero.h1': 'Mindtone+<br /><span>デジタルサウンドウェルネス</span>',
       'mt.hero.desc': '日常の騒音と喧騒から離れ、自分だけに集中できる穏やかな時間。マインドトーンは、音・光・呼吸刺激を調和させて疲れた心身の安定を助ける、パーソナライズされたデイリーウェルネスソリューションです。',
