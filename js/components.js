@@ -100,7 +100,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>©2026 Audiso, Inc. All rights reserved.</p>
+        <p>©2026 Audiso Co., Ltd. All rights reserved.</p>
         <p><a href="https://audiso.co.kr/" target="_blank" rel="noopener" data-i18n="footer.company.link">주식회사 오디에스오</a></p>
       </div>`;
   }

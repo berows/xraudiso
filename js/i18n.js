@@ -375,7 +375,7 @@
       'wh.inno.btn1': 'Download<br>Catalog',
       'wh.inno.btn2': 'Request<br>Quote',
 
-      'footer.brand.info': 'Audiso, Inc.<br />200 Gipdomsi-ro, Jijung-myeon, Wonju-si,<br />Gangwon State, South Korea · Medical Device Support Center #603',
+      'footer.brand.info': 'Audiso Co., Ltd.<br />200 Gipdomsi-ro, Jijung-myeon, Wonju-si,<br />Gangwon State, South Korea · Medical Device Support Center #603',
       'footer.col1.title': 'Products',
       'footer.col1.link1': 'ModuHear',
       'footer.col1.link2': 'MindTone+',
@@ -528,8 +528,8 @@
       'wh.title.ko': 'ウィズヒア',
       'wh.hero.title': '自動聴力検査キオスクソリューション',
       'wh.hero.desc': 'WithHear™は専門人材なしでも精密な聴力検査が可能です。AI統合聴覚検査を提供し、様々な公共・医療現場で効率的な無人スクリーニング運営を実現します。',
-      'wh.hero.btn1': 'カタログ ダウンロード',
-      'wh.hero.btn2': '見積もり 依頼',
+      'wh.hero.btn1': 'カタログ<br>ダウンロード',
+      'wh.hero.btn2': '見積もり<br>依頼',
       'wh.intro.title': '正確で簡単な聴力検査の新しい基準',
       'wh.intro.desc': '複雑な説明なしに、素早く正確に耳の健康を確認できます。<br>WithHear™が聴力検査の新しい日常として近づいています。',
 
@@ -557,7 +557,7 @@
 
       'wh.data.title': 'データに基づく深い信頼性',
       'wh.data.desc': '国家指定聴力計公認校正機関オーディエスオならではの徹底した性能校正と、<br>参照標準聴覚ビッグデータに基づく測定アルゴリズムを組み合わせた高い検査信頼性を保証。',
-      'wh.data.note': 'ISO/IEC 17025 認定校正機関 · KOLAS 認定番号 第KC-0551号<br>© 2024 Audiso, Inc. All rights reserved. WithHear™ is a trademark of Audiso, Inc.',
+      'wh.data.note': 'ISO/IEC 17025 認定校正機関 · KOLAS 認定番号 第KC-0551号<br>© 2024 Audiso Co., Ltd. All rights reserved. WithHear™ is a trademark of Audiso Co., Ltd.',
 
       'wh.global.title': 'グローバルショーケースで確認された世界の医療専門家からの絶賛！',
       'wh.global.b1.title': '迅速な検査スピードと利便性',
@@ -598,8 +598,8 @@
       'wh.inno.li1': '随意契約権限：指定日から3年間、金額制限なしに公共機関と随意契約が可能。',
       'wh.inno.li2': 'パイロット購入事業：調達庁の予算で製品を購入し、公共機関にテスト用として供給。',
       'wh.inno.desc': '調達庁イノベーション製品として指定されたWithHear™は、<span class="wh-hl-yellow">高い検査信頼性を持つ点</span>と、公共機関の現場で<span class="wh-hl-red">医療の空白地帯を効果的に解消できる点</span>が認められ、国家調達優先購入の対象となりました。地域の保健センター、軍医療施設、公共福祉館など医療インフラが不足している現場に普及し、誰でも気軽に聴力チェックができる環境を整えていきます。',
-      'wh.inno.btn1': 'カタログ ダウンロード',
-      'wh.inno.btn2': '見積もり 依頼',
+      'wh.inno.btn1': 'カタログ<br>ダウンロード',
+      'wh.inno.btn2': '見積もり<br>依頼',
 
       'footer.brand.info': 'オーディエスオ株式会社<br />韓国 江原特別自治道 原州市<br />医療機器総合支援センター 603号',
       'footer.col1.title': '製品',
