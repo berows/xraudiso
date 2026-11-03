@@ -56,7 +56,7 @@
     }
     .wh-dots {
       display: flex;
-      gap: 46px;
+      gap: 20px;
       margin-bottom: 40px;
     }
     .wh-dot {
@@ -574,6 +574,8 @@
       dots.forEach(dot => {
         dot.addEventListener('click', () => goTo(+dot.dataset.idx));
       });
+
+      setInterval(() => goTo((current + 1) % slides.length), 5000);
     })();
   </script>
   <script>
