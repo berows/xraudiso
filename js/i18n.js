@@ -90,7 +90,7 @@
       'wh.fea2.li1': '고해상도 이경 카메라로 고막 영상 자동 촬영',
       'wh.fea2.li2': 'AI 딥러닝 모델이 고막 상태를 분석해 이상 소견 여부 즉시 판별',
       'wh.fea3.title': '표준화 자가진단 설문지',
-      'wh.fea3.li1': '국제 표준 난청 설문지(HHIE-S)를 터치스크린으로 간편 작성',
+      'wh.fea3.li1': '신뢰도와 타당도가 검증된 표준화 설문지(RHHI-K)를 터치스크린으로 간편하게 작성하도록 구현',
       'wh.fea3.li2': '청력검사 결과와 통합 분석해 맞춤형 결과 리포트 제공',
 
       'wh.site.title': '주요 설치 장소',
@@ -316,7 +316,7 @@
       'wh.fea2.li1': 'High-resolution otoscope camera automatically captures tympanic membrane images.',
       'wh.fea2.li2': 'AI deep-learning model analyzes membrane condition and instantly flags abnormalities.',
       'wh.fea3.title': 'Standardized Self-Assessment Questionnaire',
-      'wh.fea3.li1': 'Internationally standardized hearing questionnaire (HHIE-S) completed via touchscreen.',
+      'wh.fea3.li1': 'Features the reliability- and validity-validated RHHI-K questionnaire, designed for easy touchscreen completion.',
       'wh.fea3.li2': 'Integrated analysis with audiometry results delivers a personalized outcome report.',
 
       'wh.site.title': 'Installation Sites',
@@ -542,7 +542,7 @@
       'wh.fea2.li1': '高解像度耳鏡カメラで鼓膜映像を自動撮影。',
       'wh.fea2.li2': 'AIディープラーニングモデルが鼓膜状態を分析し、異常所見を即座に判定。',
       'wh.fea3.title': '標準化自己診断アンケート',
-      'wh.fea3.li1': '国際標準難聴アンケート（HHIE-S）をタッチスクリーンで簡単に記入。',
+      'wh.fea3.li1': '信頼性・妥当性が検証された標準化アンケート（RHHI-K）を、タッチスクリーンで簡単に回答できるよう実装。',
       'wh.fea3.li2': '聴力検査結果と統合分析し、パーソナライズされた結果レポートを提供。',
 
       'wh.site.title': '主な設置場所',
