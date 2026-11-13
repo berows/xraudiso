@@ -78,6 +78,7 @@
       'wh.hero.desc': 'WithHear™는 전문 인력 없이도 정밀한 청력검사가 가능합니다. AI 통합 청각 검사를 제공하여 다양한 공공 및 의료 현장에서 효율적인 무인 선별진단 운영이 가능합니다.',
       'wh.hero.btn1': '카탈로그<br>다운로드',
       'wh.hero.btn2': '견적<br>문의',
+      'wh.hero.btn3': '매뉴얼',
       'wh.intro.title': '정확하고 간편한 청력 검진의 새로운 기준',
       'wh.intro.desc': '복잡한 설명 없이, 빠르고 정확하게 귀 건강을 확인하세요.<br>WithHear™가 청력검사의 새로운 일상으로 다가갑니다.',
 
@@ -148,6 +149,7 @@
       'wh.inno.desc': 'WithHear™는 한국인 청각 참조 표준데이터를 활용한 AI 알고리즘을 적용하여 높은 검사 신뢰도를 갖춘 점과 보건소, 지자체 복지시설, 군부대, 학교 등 전문 의료진이나 특수 설비가 부족한 공공 보건 현장의 의료 사각지대를 효과적으로 해소할 수 있다는 점에서 공공성과 기술 혁신성을 높게 평가 받았습니다.',
       'wh.inno.btn1': '카탈로그<br>다운로드',
       'wh.inno.btn2': '견적<br>문의',
+      'wh.inno.btn3': '매뉴얼',
 
       'footer.brand.info': '(주)오디에스오<br />강원특별자치도 원주시 지정면 기업도시로 200,<br />의료기기종합지원센터 603호',
       'footer.col1.title': '제품',
@@ -304,6 +306,7 @@
       'wh.hero.desc': 'WithHear™ enables precise hearing screening without specialized personnel. By providing AI-integrated auditory testing, it supports efficient unattended screening operations across diverse public and medical environments.',
       'wh.hero.btn1': 'Download<br>Catalog',
       'wh.hero.btn2': 'Request<br>Quote',
+      'wh.hero.btn3': 'Manual',
       'wh.intro.title': 'A New Standard for Accurate and Simple Hearing Screening',
       'wh.intro.desc': 'Check your hearing health quickly and accurately, without complicated instructions.<br>WithHear™ is making hearing tests a natural part of everyday life.',
 
@@ -374,6 +377,7 @@
       'wh.inno.desc': 'WithHear™ utilizes an AI algorithm based on reference data for Korean hearing standards, ensuring high reliability in testing. It has been highly recognized for both its public value and technological innovation, as it effectively addresses gaps in healthcare—specifically in public health settings such as community health centers, local government welfare facilities, military units, and schools—where professional medical staff or specialized equipment may be lacking.',
       'wh.inno.btn1': 'Download<br>Catalog',
       'wh.inno.btn2': 'Request<br>Quote',
+      'wh.inno.btn3': 'Manual',
 
       'footer.brand.info': 'Audiso Co., Ltd.<br />200 Gieopdosi-ro, Jijung-myeon, Wonju-si,<br />Gangwon State, South Korea · Medical Device Support Center #603',
       'footer.col1.title': 'Products',
@@ -530,6 +534,7 @@
       'wh.hero.desc': 'WithHear™は専門人材なしでも精密な聴力検査が可能です。AI統合聴覚検査を提供し、様々な公共・医療現場で効率的な無人スクリーニング運営を実現します。',
       'wh.hero.btn1': 'カタログ<br>ダウンロード',
       'wh.hero.btn2': '見積もり<br>依頼',
+      'wh.hero.btn3': 'マニュアル',
       'wh.intro.title': '正確で簡単な聴力検査の新しい基準',
       'wh.intro.desc': '複雑な説明なしに、素早く正確に耳の健康を確認できます。<br>WithHear™が聴力検査の新しい日常として近づいています。',
 
@@ -600,6 +605,7 @@
       'wh.inno.desc': '調達庁イノベーション製品として指定されたWithHear™は、<span class="wh-hl-yellow">高い検査信頼性を持つ点</span>と、公共機関の現場で<span class="wh-hl-red">医療の空白地帯を効果的に解消できる点</span>が認められ、国家調達優先購入の対象となりました。地域の保健センター、軍医療施設、公共福祉館など医療インフラが不足している現場に普及し、誰でも気軽に聴力チェックができる環境を整えていきます。',
       'wh.inno.btn1': 'カタログ<br>ダウンロード',
       'wh.inno.btn2': '見積もり<br>依頼',
+      'wh.inno.btn3': 'マニュアル',
 
       'footer.brand.info': 'オーディエスオ株式会社<br />韓国 江原特別自治道 原州市<br />医療機器総合支援センター 603号',
       'footer.col1.title': '製品',
